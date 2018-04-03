@@ -1,0 +1,67 @@
+ul {
+    list-style-type: none;
+    margin: 25;
+    padding: 5;
+}
+
+li{
+    float: left;
+}
+
+li a{
+    display: block;
+    color: whitesmoke;
+    background: linear-gradient(to bottom right,brown,black);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    border-style: outset;
+    border-width: medium;
+}
+
+#grad{
+    background: linear-gradient(brown,black);
+}
+
+ul.navBar
+{
+    display: inline;
+    width: auto;
+    text-align: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    color: white;
+
+}
+
+pTitle
+{
+   text-decoration-color: aliceblue;
+}
+
+body {
+   background-image: url("mainPageBackground.jpg");
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-color: #cccccc;
+}
+
+div.projinf
+{
+   width: 500px;
+   height: 300px;
+   color:white;
+   border-style: inset;
+   
+   position: absolute;
+   top: 60%;
+   width: 50%%;
+   left: 50%;
+   right: 50%;
+   text-align: center;
+   font-size: 25px;
+   border: 8px solid brown;
+}
