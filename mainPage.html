@@ -22,7 +22,6 @@
       </div>
       <div>
         <?php 
-            echo "<p>Door</p>";
             $servername = "localhost";
             $username = "root";
             $password = "little";
@@ -45,7 +44,7 @@
             if ($tempDateQuery->num_rows > 0) {
                 // output data of each row
                 while($row = $result->fetch_assoc()) {
-                    echo "date: " . $row["timeStamp"]. " - boilerTemp: " . $row["boilerTemp"]. " - ambientTemp: " . $row["ambientTemp"]. " - ambientHumidity: " . $row["ambientHumidity"];
+                    echo "<p>"date: " . $row["timeStamp"]. " - boilerTemp: " . $row["boilerTemp"]. " - ambientTemp: " . $row["ambientTemp"]. " - ambientHumidity: " . $row["ambientHumidity"]</p>";
                 }
             } else {
                 echo "0 results";
