@@ -16,16 +16,15 @@ if ($conn->connect_error)
 //SQL Results
 //Temperature and Date Time
 $tempDateQuery = "SELECT * FROM normal";
-$tempDateResult = $conn->query($tempDateQuery);
 
-if ($tempDateQuery->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo "date: " . $row["timeStamp"]. " - boilerTemp: " . $row["boilerTemp"]. " - ambientTemp: " . $row["ambientTemp"]. " - ambientHumidity: " . $row["ambientHumidity"];
-    }
-} else {
-    echo "0 results";
+/* Select queries return a resultset */
+if ($result = $mysqli->query($tempDateQuery)) {
+    printf("Select returned %d rows.\n", $result->num_rows);
+
+    /* free result set */
+    $result->close();
 }
+
 
 $conn->close();
 //Pressure
