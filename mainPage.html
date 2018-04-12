@@ -30,30 +30,12 @@
             //Create Connection
             $conn = new mysql_connect($servername, $username, $password, $dbname);
 
-            //Check Connection
-            if ($conn->connect_error) 
-            {
-                die("Connection failed: " . $conn->connect_error);
-            } 
-
-            //SQL Results
-            //Temperature and Date Time
-            $tempDateQuery = "SELECT * FROM normal LIMIT 100";
-            $tempDateResult = $conn->query($tempDateQuery);
-
-            if ($tempDateQuery->num_rows > 0) {
-                // output data of each row
-                while($row = $result->fetch_assoc()) {
-                    echo "<p>"date: " . $row["timeStamp"]. " - boilerTemp: " . $row["boilerTemp"]. " - ambientTemp: " . $row["ambientTemp"]. " - ambientHumidity: " . $row["ambientHumidity"]</p>";
-                }
-            } else {
-                echo "0 results";
+            if(! $conn ) {
+            die('Could not connect: ' . mysql_error());
             }
-
-            $conn->close();
-            //Pressure
-            //$pressureQuery = "";
-            //$pressureResuly = $conn->query($pressureQuery);
+         
+            echo 'Connected successfully';
+            mysql_close($conn);
         ?>
       </div>
   </body>
