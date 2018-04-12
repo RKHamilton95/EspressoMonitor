@@ -20,7 +20,7 @@
           <a href="https://github.com/RKHamilton95/ExpressoMonitor"><font color="white">EspressoMonitor</font></a>
            </heading>
       </div>
-      <div>
+      <div class>
         <?php 
             $servername = "localhost";
             $username = "root";
@@ -31,7 +31,7 @@
             $conn = new mysql_connect($servername, $username, $password);
 
             if(! $conn ) {
-                echo 'Didnt Work';
+                echo '<p>Didnt Work</p>';
                 die('Could not connect: ' . mysql_error());
             }
          
