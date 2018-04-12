@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost:3036";
+$servername = "127.0.0.1";
 $username = "root";
 $password = "little";
 $dbname = "espressopi";
