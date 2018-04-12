@@ -13,16 +13,17 @@ if ($conn->connect_error)
     die("Connection failed: " . $conn->connect_error);
 } 
 
-//SQL Results
-//Temperature and Date Time
-$tempDateQuery = "SELECT * FROM normal";
-$result = mysql_query($tempDateQuery);
-if (!$result) {
-    die('Could not query:' . mysql_error());
+$sql='SELECT * FROM normal';
+ 
+$rs=$conn->query($sql);
+ 
+if($rs === false) {
+  trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $conn->error, E_USER_ERROR);
+} else {
+  $rows_returned = $rs->num_rows;
 }
-echo mysql_result($result, 2); // outputs third employee's name
 
-mysql_close($conn);
+$conn->close();
 //Pressure
 //$pressureQuery = "";
 //$pressureResuly = $conn->query($pressureQuery);
