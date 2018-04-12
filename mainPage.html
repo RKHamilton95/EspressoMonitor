@@ -20,10 +20,20 @@
           <a href="https://github.com/RKHamilton95/ExpressoMonitor"><font color="white">EspressoMonitor</font></a>
            </heading>
       </div>
-      <div class>
+      <body>
         <?php 
-            phpinfo();
+            $dbhost = 'localhost:3036';
+            $dbuser = 'root';
+            $dbpass = 'little';
+            $conn = mysql_connect($dbhost, $dbuser, $dbpass);
+      
+            if(! $conn ) {
+                die('Could not connect: ' . mysql_error());
+            }  
+         
+            echo 'Connected successfully';
+            mysql_close($conn);
         ?>
-      </div>
+      </body>
   </body>
 </html>
