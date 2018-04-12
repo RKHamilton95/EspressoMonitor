@@ -23,6 +23,11 @@ if($rs === false) {
   $rows_returned = $rs->num_rows;
 }
 
+$rs->data_seek(0);
+while($row = $rs->fetch_row()){
+    echo $row[0] . '<br>';
+}
+
 $conn->close();
 //Pressure
 //$pressureQuery = "";
