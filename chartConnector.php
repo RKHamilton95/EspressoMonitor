@@ -15,18 +15,14 @@ if ($conn->connect_error)
 
 //SQL Results
 //Temperature and Date Time
-$tempDateQuery = "SELECT * FROM normal;";
-printf("Before");
-/* Select queries return a resultset */
-/* Select queries return a resultset */
-if ($result = $conn->query($tempDateQuery)) {
-    printf("Select returned %d rows.\n", $result->num_rows);
-
-    /* free result set */
-    $result->close();
+$tempDateQuery = "SELECT * FROM normal";
+$result = mysql_query($tempDateQuery);
+if (!$result) {
+    die('Could not query:' . mysql_error());
 }
-printf("After");
-$conn->close();
+echo mysql_result($result, 2); // outputs third employee's name
+
+mysql_close($conn);
 //Pressure
 //$pressureQuery = "";
 //$pressureResuly = $conn->query($pressureQuery);
