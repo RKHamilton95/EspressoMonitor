@@ -16,7 +16,7 @@ if ($conn->connect_error)
 //SQL Results
 //Temperature and Date Time
 $tempDateQuery = "SELECT * FROM temperature LIMIT 100";
-$tempDateResult = $conn->query($tempQuery);
+$tempDateResult = $conn->query($tempDateQuery);
 
 if ($tempDateQuery->num_rows > 0) {
     // output data of each row
@@ -26,6 +26,7 @@ if ($tempDateQuery->num_rows > 0) {
 } else {
     echo "0 results";
 }
+
 $conn->close();
 //Pressure
 //$pressureQuery = "";

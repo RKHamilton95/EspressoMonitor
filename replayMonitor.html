@@ -8,12 +8,12 @@
     <div>
         <ul class="navBar">
             <li><a href="mainPage.html">Main Page</a></li>
-            <li><a href="realTimeMonitor.html">Real Time Monitor</a></li>
-            <li><a href="replayMonitor.html">Replay Monitor</a></li>
+            <li><a href="realTimeMonitor.html">Real Time Brew</a></li>
+            <li><a href="replayMonitor.html">Replay Brew</a></li>
         </ul>
     </div>
-  <body>
-      <canvas id="myChart"></canvas>
+    <div>
+      <canvas id="myChart" width="110" height="50"></canvas>
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
         var chart = new Chart(ctx, {
@@ -23,9 +23,9 @@
     data: {
         labels: ["January", "February", "March", "April", "May", "June", "July"],
         datasets: [{
-            label: "My First dataset",
+            label: "Brew Graph",
             backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 255, 255)',
             data: [0, 10, 5, 2, 20, 30, 45],
         }]
     },
@@ -34,5 +34,7 @@
     options: {}
 });       
       </script>
+      </div>
+  <body>
   </body>
 </html>
