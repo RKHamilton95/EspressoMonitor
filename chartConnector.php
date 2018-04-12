@@ -15,13 +15,13 @@ if ($conn->connect_error)
 
 //SQL Results
 //Temperature and Date Time
-$tempDateQuery = "SELECT * FROM temperature LIMIT 100";
+$tempDateQuery = "SELECT * FROM normal LIMIT 100";
 $tempDateResult = $conn->query($tempDateQuery);
 
 if ($tempDateQuery->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "date: " . $row["date"]. " - temperature: " . $row["temperature"];
+        echo "date: " . $row["timeStamp"]. " - boilerTemp: " . $row["boilerTemp"]. " - ambientTemp: " . $row["ambientTemp"]. " - ambientHumidity: " . $row["ambientHumidity"];
     }
 } else {
     echo "0 results";
