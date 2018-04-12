@@ -22,13 +22,13 @@
       </div>
       <div>
         <?php 
-            $servername = "localhost";
+            $servername = "localhost:3036";
             $username = "root";
             $password = "little";
             $dbname = "espressopi";
 
             //Create Connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
+            $conn = new mysql_connect($servername, $username, $password, $dbname);
 
             //Check Connection
             if ($conn->connect_error) 
