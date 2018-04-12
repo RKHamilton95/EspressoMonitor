@@ -1,6 +1,6 @@
 <?php
 $servername = "127.0.0.1";
-$username = "pi";
+$username = "spress";
 $password = "little";
 $dbname = "espressopi";
 
