@@ -16,7 +16,7 @@ if ($conn->connect_error)
 //SQL Results
 //Temperature and Date Time
 $tempDateQuery = "SELECT * FROM normal";
-
+printf("Before");
 /* Select queries return a resultset */
 if ($result = mysqli_query($conn, $tempDateQuery)) {
     printf("Select returned %d rows.\n", mysqli_num_rows($result));
@@ -24,7 +24,7 @@ if ($result = mysqli_query($conn, $tempDateQuery)) {
     /* free result set */
     mysqli_free_result($result);
 }
-
+printf("After");
 $conn->close();
 //Pressure
 //$pressureQuery = "";
