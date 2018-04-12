@@ -1,7 +1,7 @@
 <?php
 $servername = "127.0.0.1";
 $username = "pi";
-$password = "password";
+$password = "little";
 $dbname = "espressopi";
 
 //Create Connection
