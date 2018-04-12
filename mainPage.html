@@ -22,21 +22,7 @@
       </div>
       <div class>
         <?php 
-            $servername = "localhost";
-            $username = "root";
-            $password = "little";
-            $dbname = "espressopi";
-
-            //Create Connection
-            $conn = new mysql_connect($servername, $username, $password);
-
-            if(! $conn ) {
-                echo '<p>Didnt Work</p>';
-                die('Could not connect: ' . mysql_error());
-            }
-         
-            echo 'Connected successfully';
-            mysql_close($conn);
+            phpinfo();
         ?>
       </div>
   </body>
