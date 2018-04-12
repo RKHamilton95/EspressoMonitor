@@ -18,11 +18,12 @@ if ($conn->connect_error)
 $tempDateQuery = "SELECT * FROM normal";
 printf("Before");
 /* Select queries return a resultset */
-if ($result = mysqli_query($conn, "SELECT * FROM normal")) {
-    printf("Select returned %d rows.\n", mysqli_num_rows($result));
+/* Select queries return a resultset */
+if ($result = $conn->query($tempDateQuery)) {
+    printf("Select returned %d rows.\n", $result->num_rows);
 
     /* free result set */
-    mysqli_free_result($result);
+    $result->close();
 }
 printf("After");
 $conn->close();
