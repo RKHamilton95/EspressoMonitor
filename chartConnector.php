@@ -15,7 +15,7 @@ if ($conn->connect_error)
 
 //SQL Results
 //Temperature and Date Time
-$tempDateQuery = "SELECT * FROM normal LIMIT 100";
+$tempDateQuery = "SELECT * FROM normal";
 $tempDateResult = $conn->query($tempDateQuery);
 
 if ($tempDateQuery->num_rows > 0) {
