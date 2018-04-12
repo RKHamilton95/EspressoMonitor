@@ -31,7 +31,8 @@
             $conn = new mysql_connect($servername, $username, $password);
 
             if(! $conn ) {
-            die('Could not connect: ' . mysql_error());
+                echo 'Didnt Work';
+                die('Could not connect: ' . mysql_error());
             }
          
             echo 'Connected successfully';
