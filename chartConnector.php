@@ -18,13 +18,12 @@ if ($conn->connect_error)
 $tempDateQuery = "SELECT * FROM normal";
 
 /* Select queries return a resultset */
-if ($result = $mysqli->query($tempDateQuery)) {
-    printf("Select returned %d rows.\n", $result->num_rows);
+if ($result = mysqli_query($conn, $tempDateQuery)) {
+    printf("Select returned %d rows.\n", mysqli_num_rows($result));
 
     /* free result set */
-    $result->close();
+    mysqli_free_result($result);
 }
-
 
 $conn->close();
 //Pressure
