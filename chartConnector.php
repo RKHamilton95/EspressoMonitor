@@ -15,7 +15,7 @@ if ($conn->connect_error)
 
 //SQL Results
 //Temperature and Date Time
-$tempDateQuery = "SELECT * FROM normal";
+$tempDateQuery = "SELECT * FROM normal;";
 printf("Before");
 /* Select queries return a resultset */
 /* Select queries return a resultset */
