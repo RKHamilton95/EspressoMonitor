@@ -14,11 +14,11 @@
 
 	function drawFinalShotChart() {
 		$.getJSON(baseURL.concat("data"), function(results){
-			var labels = [], data=[],data2=[];
+			var labels = [], boilerTemp=[],pressure=[];
 			$.each(results, function(i, field){
 				labels.push(field.timestamp);
-				data.push(field.boilerTemp);
-                data1.push(field.pressure);
+				boilerTemp.push(field.boilerTemp);
+                pressure.push(field.pressure);
 			});
 
 			var tempData = {
@@ -28,14 +28,14 @@
 				datasets : [{
 					label: 'Boiler Temperature',
 					backgroundColor: "rgba(153,255,51,0.4)",
-					data: data,
+					data: boilerTemp,
 					radius: 2,
 					fill: false
 				},
 				{
 					label: 'Pressure',
 					backgroundColor: "rgba(255,153,0,0.4)",
-					data: data2,
+					data: pressure,
 					radius: 2
 				}
 				]
