@@ -13,7 +13,7 @@
     var baseURL = "http://pidataspro.ddns.net:8056/";
 
 	function drawLineChart() {
-		$.getJSON(baseURL.concat(""), function(results){
+		$.getJSON(baseURL.concat("data"), function(results){
 			var labels = [], data=[],data2=[];
 			$.each(results, function(i, field){
 				labels.push(field.Timestamp);
