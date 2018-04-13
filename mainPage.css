@@ -10,8 +10,8 @@ pTitle
 
 body {
    background-image: url("mainPageBackground.jpg");
-   background-repeat: fill;
-   background-size: cover;
+   background-repeat: no-repeat;
+   background-size: auto;
    background-color: #cccccc;
 }
 
