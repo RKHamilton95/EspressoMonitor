@@ -6,14 +6,14 @@
 </head>
 
 <body>
-</canvas><canvas id="myChart"></canvas>
+<canvas id="myChart"></canvas>
 
 <script>
 	var ctx = document.getElementById("myChart").getContext("2d");
-
+    var baseURL = "http://pidataspro.ddns.net:8056/";
 
 	function drawLineChart() {
-		$.getJSON("http://localhost:3000/data", function(results){
+		$.getJSON(baseURL.concat(""), function(results){
 			var labels = [], data=[],data2=[];
 			$.each(results, function(i, field){
 				labels.push(field.Timestamp);
