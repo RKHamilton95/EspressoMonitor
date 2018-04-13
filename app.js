@@ -4,6 +4,27 @@ var app = express();
 var server = require('http').createServer(app);  
 var io = require('socket.io')(server);
 
+
+var mysql = require('mysql')
+var connection = mysql.createConnection({
+	host : 'localhost',
+	user : 'pi',
+	password : 'little',
+	database : 'espressopi'
+});
+
+connection.connect();
+
+app.get('/data', function(req,res){
+connection.query('SELECT * FROM shot_data', function (error, rows){
+	if(error) throw error;
+	res.json(rows);
+
+});
+})
+
+
+
 app.use(express.static(__dirname + '/'));  
 app.get('/', function(req, res,next) {  
     res.sendFile(__dirname + '/mainPage.html');
