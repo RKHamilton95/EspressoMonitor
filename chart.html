@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+</canvas><canvas id="myChart"></canvas>
+
+<script>
+	var ctx = document.getElementById("myChart").getContext("2d");
+
+
+	function drawLineChart() {
+		$.getJSON("http://localhost:3000/data", function(results){
+			var labels = [], data=[],data2=[];
+			$.each(results, function(i, field){
+				labels.push(field.Timestamp);
+				data.push(field.directF);
+				data2.push(field.ambientF);
+			});
+
+			var tempData = {
+				labels: labels,
+				xAxisID: "Time",
+				yAxisID: "Temperature in F",
+				datasets : [{
+					label: 'Infrared Temp',
+					backgroundColor: "rgba(153,255,51,0.4)",
+					data: data,
+					radius: 2,
+					fill: false
+				},
+				{
+					label: 'Ambient Temp',
+					backgroundColor: "rgba(255,153,0,0.4)",
+					data: data2,
+					radius: 2
+				}
+				]
+			};
+
+
+			var myChart = new Chart(ctx, {
+				type: 'line',
+				data: tempData,
+				options:{
+					animation:{
+						duration: 0
+					},
+					title: {
+						fontSize: 20,
+						display: true,
+						text: "Room Temperature"},
+						
+						scales: {
+							yAxes: [{
+								ticks: {
+									stepSize: 1
+								}
+							}]
+							
+						}
+
+
+					}
+				});
+		});
+	}
+	
+	drawLineChart();
+
+	setInterval(function(){
+		drawLineChart();
+	}, 2000);
+</script>
+</body>
+</html>
