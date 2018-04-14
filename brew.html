@@ -66,19 +66,19 @@
 
             function drawChart() {
                 var baseURL = "http://pidataspro.ddns.net:8056/";
-                $.getJSON(baseURL.concat("realTime"), function(results){
-                    var labels = [], boilerTemp=[],roomTemp=[],pressure=[];
+                $.getJSON(baseURL.concat("shot_data"), function(results){
+                    var labels = [], boilerTemp=[],weight=[],pressure=[];
                     $.each(results, function(i, field){
                         labels.push(field.timestamp);
                         boilerTemp.push(field.boilerTemp);
-                        roomTemp.push(field.roomTemp);
+                        weight.push(field.weight);
                         pressure.push(field.pressure)
                     });
 
                     var data = google.visualization.arrayToDataTable([
                         ['Label', 'Value'],
                         ['Boiler Temp', boilerTemp],
-                        ['Ambient Temp', roomTemp],
+                        ['Weight', weight],
                         ['Pressure', pressure]
                     ]);
 
@@ -121,12 +121,11 @@
                     ctx.fillStyle = "white"
 
                     function drawRealTempChart() {
-                        $.getJSON(baseURL.concat("realTime"), function(results){
+                        $.getJSON(baseURL.concat("shot_data"), function(results){
                             var labels = [], boilerTemp=[],roomTemp=[];
                             $.each(results, function(i, field){
                                 labels.push(field.timestamp);
                                 boilerTemp.push(field.boilerTemp);
-                                roomTemp.push(field.roomTemp);
                             });
 
                             var tempData = {
@@ -139,14 +138,7 @@
                                     data: boilerTemp,
                                     radius: 2,
                                     fill: false
-                                },
-                                            {
-                                                label: 'Room Temp',
-                                                backgroundColor: "rgba(255,153,0,0.4)",
-                                                data: roomTemp,
-                                                radius: 2
-                                            }
-                                           ]
+                                }]
                             };
 
 
@@ -189,7 +181,7 @@
                     ctx.fillStyle = "white"
 
                     function drawRealPressureChart() {
-                        $.getJSON(baseURL.concat("realTime"), function(results){
+                        $.getJSON(baseURL.concat("shot_data"), function(results){
                             var labels = [], pressure=[];
                             $.each(results, function(i, field){
                                 labels.push(field.timestamp);
@@ -248,7 +240,7 @@
                     var baseURL = "http://pidataspro.ddns.net:8056/";
                     ctx.fillStyle = "white"
                     function drawRealHumidityChart() {
-                        $.getJSON(baseURL.concat("realTime"), function(results){
+                        $.getJSON(baseURL.concat("shot_data"), function(results){
                             var labels = [], humidity=[];
                             $.each(results, function(i, field){
                                 labels.push(field.timestamp);
