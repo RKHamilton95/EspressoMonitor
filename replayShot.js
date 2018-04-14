@@ -1,4 +1,4 @@
-	function drawFinalShotChart(var ctx,var baseURL) {
+	function drawFinalShotChart() {
 		$.getJSON(baseURL.concat("shot_data"), function(results){
 			var labels = [], boilerTemp=[],pressure=[];
 			$.each(results, function(i, field){
