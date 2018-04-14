@@ -36,8 +36,27 @@
     </nav>
     <div>
         <img class="container-fluid" src= "http://pidataspro.ddns.net:8057?action=stream" width="640" height="480"/>
-        <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled" id="toggle">
+        
     </div>
+    <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Brew on/off button -->
+                    <h3 id="h3Brew">Brew</h3>
+                    <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled" id="toggle">
+
+                    <script>
+                        $(function() {
+                            $('#toggle-two').bootstrapToggle({
+                                on: 'ON',
+                                off: 'OFF'
+                            });
+                        })
+                    </script>
+                    <!-- breww on/off end -->
+                </div>
+            </div>
+        </div>
     <br>
     <br>
     <div class="projinf">
