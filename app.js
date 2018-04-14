@@ -15,8 +15,16 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-app.get('/data', function(req,res){
+app.get('/shot_data', function(req,res){
 connection.query('SELECT * FROM shot_data', function (error, rows){
+	if(error) throw error;
+	res.json(rows);
+
+});
+})
+
+app.get('/normal_data', function(req,res){
+connection.query('SELECT * FROM normal_data', function (error, rows){
 	if(error) throw error;
 	res.json(rows);
 
