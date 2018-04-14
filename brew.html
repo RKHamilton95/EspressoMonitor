@@ -67,19 +67,19 @@
             function drawChart() {
                 var baseURL = "http://pidataspro.ddns.net:8056/";
                 $.getJSON(baseURL.concat("realTime"), function(results){
-                    var labels = [], boilerTemp=[],roomTemp=[],pressue=[];
+                    var labels = [], boilerTemp=[],roomTemp=[],pressure=[];
                     $.each(results, function(i, field){
                         labels.push(field.timestamp);
                         boilerTemp.push(field.boilerTemp);
                         roomTemp.push(field.roomTemp);
-                        pressue.push(field.pressure)
+                        pressure.push(field.pressure)
                     });
 
                     var data = google.visualization.arrayToDataTable([
                         ['Label', 'Value'],
                         ['Boiler Temp', boilerTemp],
                         ['Ambient Temp', roomTemp],
-                        ['Pressure', pressue]
+                        ['Pressure', pressure]
                     ]);
 
                     var options = {
@@ -94,15 +94,15 @@
                     chart.draw(data, options);
 
                     setInterval(function() {
-                        data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+                        data.setValue(boilerTemp);
                         chart.draw(data, options);
                     }, 2000);
                     setInterval(function() {
-                        data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+                        data.setValue(roomTemp);
                         chart.draw(data, options);
                     }, 2000);
                     setInterval(function() {
-                        data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
+                        data.setValue(pressure);
                         chart.draw(data, options);
                     }, 2000);
                 }
