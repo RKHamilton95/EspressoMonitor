@@ -4,6 +4,15 @@ var app = express();
 var server = require('http').createServer(app);  
 var PythonShell = require('python-shell');
 
+var options = {
+  mode: 'text',
+  pythonPath: 'path/to/python',
+  pythonOptions: ['-u'],
+  scriptPath: '../pythonMysqlScripts/',
+  args: ['1', 'value2', 'value3']
+};
+
+
 var mysql = require('mysql')
 var connection = mysql.createConnection({
 	host : 'localhost',
@@ -31,14 +40,14 @@ connection.query('SELECT * FROM normal_data', function (error, rows){
 })
 
 app.get('/on', function (req, res) {
-  PythonShell.run('../pythonMysqlScripts/sendData', {args: ['1']}, function (err, results) {
+  PythonShell.run('sendData.py', options, function (err, results) {
   if (err) throw err;
   // results is an array consisting of messages collected during execution
   });
   res.send('Machine On')
 })
 app.get('/off', function (req, res) {
-  PythonShell.run('../pythonMysqlScripts/sendData', {args: ['2']}, function (err, results) {
+  PythonShell.run('../pythonMysqlScripts/sendData.py', {args: ['2']}, function (err, results) {
   if (err) throw err;
     
   // results is an array consisting of messages collected during execution
