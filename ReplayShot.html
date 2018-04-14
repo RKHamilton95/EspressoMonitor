@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Socket.io</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link href="nouislider.min.css" rel="stylesheet"> -->
+        <link href="toggle-switch.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    </head>
+ 
+    <body style="background-color:#37474f ;">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Raspberry Espresso</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="brew.html">Brew</a></li>
+        <li class="active"><a href="ReplayShot.html">Replay Shot</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="col-md-7">
+        <canvas id="myChart"></canvas>
+        <body>
+     <script>
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var baseURL = "http://pidataspro.ddns.net:8056/";
+         
+        function drawFinalShotChart() {
+		$.getJSON(baseURL.concat("shot_data"), function(results){
+			var labels = [], boilerTemp=[],pressure=[];
+			$.each(results, function(i, field){
+				labels.push(field.timeStamp);
+				boilerTemp.push(field.boilerTemp);
+                pressure.push(field.pressure);
+			});
+
+			var tempData = {
+				labels: labels,
+				xAxisID: "Time",
+				yAxisID: "Temperature in F",
+				datasets : [{
+					label: 'Boiler Temperature',
+					backgroundColor: "rgba(153,255,51,0.4)",
+					data: boilerTemp,
+					radius: 2,
+					fill: false
+				},
+				{
+					label: 'Pressure',
+					backgroundColor: "rgba(255,153,0,0.4)",
+					data: pressure,
+					radius: 2
+				}
+				]
+			};
+
+
+			var myChart = new Chart(ctx, {
+				type: 'line',
+				data: tempData,
+				options:{
+					animation:{
+						duration: 0
+					},
+					title: {
+						fontSize: 20,
+						display: true,
+						text: "Temp/Pressure"},
+						
+						scales: {
+							yAxes: [{
+								ticks: {
+									stepSize: 1
+								}
+							}]
+							
+						}
+
+
+					}
+				});
+		});
+	}
+         
+    drawFinalShotChart();
+     </script> 
+    </body>
+ </div>
+ <!-- <div class="col-md-6">
+    <h2 id="header" style="color:white ;"></h2>
+
+    <!-- Button for Off, pre-infusion, boil -->
+<!--    <div class="switch-toggle switch-3 switch-candy">
+    <input id="on" name="state-d" type="radio" checked="checked">
+    <label for="on" onclick="">Off</label>
+
+    <input id="na" name="state-d" type="radio">
+        <label for="na" onclick="">Pre-Infusion</label>
+
+    <input id="off" name="state-d" type="radio">
+    <label for="off" onclick="">Boiling</label>
+    <a></a>
+    </div>--->
+    <!-- end -->
+
+    <!-- Timer -->
+<!--<div id="timer">
+  <h3 class="timer">Timer</h3>
+  <!-- <span class="timer" id="hours">00:</span> -->
+  <!-- <span class="timer" id="mins">00:</span> -->
+  <!--<span class="timer" id="seconds">00</span>
+  <span class="timer"> sec </span>  
+</div>
+<div id="controls">
+  <button id="start">Start</button>
+<button id="stop">Stop</button>
+<button id="reset">Reset</button>
+</div>
+
+<script>
+var hours =0;
+var mins =0;
+var seconds =0;
+
+$('#start').click(function(){
+      startTimer();
+});
+
+$('#stop').click(function(){
+      clearTimeout(timex);
+});
+
+$('#reset').click(function(){
+      hours =0;      mins =0;      seconds =0;
+  $('#hours','#mins').html('00:');
+  $('#seconds').html('00');
+});
+
+function startTimer(){
+  timex = setTimeout(function(){
+      seconds++;
+    if(seconds >59){seconds=0;mins++;
+       if(mins>59) {
+       mins=0;hours++;
+         if(hours <10) {$("#hours").text('0'+hours+':')} else $("#hours").text(hours+':');
+                       }
+                       
+    if(mins<10){                     
+      $("#mins").text('0'+mins+':');}       
+       else $("#mins").text(mins+':');
+                   }    
+    if(seconds <10) {
+      $("#seconds").text('0'+seconds);} else {
+      $("#seconds").text(seconds);
+      }
+     
+    
+      startTimer();
+  },1000);
+}
+    
+  
+</script> --->
+    <!-- timer end -->
+
+
+
+        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+        <!-- // <script src="https://github.com/seiyria/bootstrap-slider/tree/master/distbootstrap-slider.min.js"></script> -->
+        <script>
+
+            var socket = io.connect('http://192.168.1.184:3000');
+            socket.on('change_header', function(data) {
+                document.getElementById('header').innerHTML ="Boiler Temperature: " + data.header;
+            });
+
+            $(document).ready(function() {
+            $('#toggle').change(function() {
+            if($(this).is(":checked")) {
+              socket.emit('message1', '1');
+            $(this).attr("checked", returnVal);}
+              socket.emit('message0', '0');
+              });
+            });
+
+      
+
+        </script>
+    </body>
+</html>
+
+
+
+
