@@ -11,7 +11,7 @@
 			});
 
 			var tempData = {
-				labels: JSON.parse(labels),
+				labels: labels,
 				xAxisID: "Time",
 				yAxisID: "Temperature in F",
 				datasets : [{
@@ -67,7 +67,7 @@
 			});
 
 			var pressureData = {
-				labels: JSON.parse(labels),
+				labels: labels,
 				xAxisID: "Time",
 				yAxisID: "Pressure in Bar",
 				datasets : [{
@@ -116,7 +116,7 @@
 			});
 
 			var humidityeData = {
-				labels: JSON.parse(labels),
+				labels: labels,
 				xAxisID: "Time",
 				yAxisID: "Humidity in Percent",
 				datasets : [{
