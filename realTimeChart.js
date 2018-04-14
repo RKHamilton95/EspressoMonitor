@@ -112,7 +112,7 @@
 			var labels = [], humidity=[];
 			$.each(results, function(i, field){
 				labels.push(field.timestamp);
-				humidity.push(field.humidity);
+				humidity.push(field.ambientHumidity);
 			});
 
 			var humidityeData = {
