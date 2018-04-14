@@ -119,17 +119,17 @@
                     var ctx = document.getElementById("brewTempChart").getContext("2d");
                     var baseURL = "http://pidataspro.ddns.net:8056/";
                     ctx.fillStyle = "white"
-
+                    
                     function drawRealTempChart() {
                         $.getJSON(baseURL.concat("shot_data"), function(results){
-                            var labels = [], boilerTemp=[],roomTemp=[];
+                            var label1 = [], boilerTemp=[],roomTemp=[];
                             $.each(results, function(i, field){
-                                labels.push(field.timestamp);
+                                label1.push(field.timestamp);
                                 boilerTemp.push(field.boilerTemp);
                             });
 
                             var tempData = {
-                                labels: labels,
+                                labels: label1,
                                 xAxisID: "Time",
                                 yAxisID: "Temperature in F",
                                 datasets : [{
@@ -177,20 +177,20 @@
             <canvas id="brewPressureChart"></canvas>
             <body>
                 <script>
-                    var ctx = document.getElementById("brewPressureChart").getContext("2d");
+                    var cpx = document.getElementById("brewPressureChart").getContext("2d");
                     var baseURL = "http://pidataspro.ddns.net:8056/";
-                    ctx.fillStyle = "white"
+                    cpx.fillStyle = "white"
 
                     function drawRealPressureChart() {
                         $.getJSON(baseURL.concat("shot_data"), function(results){
-                            var labels = [], pressure=[];
+                            var label2 = [], pressure=[];
                             $.each(results, function(i, field){
-                                labels.push(field.timestamp);
+                                label2.push(field.timestamp);
                                 pressure.push(field.pressure);
                             });
 
                             var pressureData = {
-                                labels: labels,
+                                labels: label2,
                                 xAxisID: "Time",
                                 yAxisID: "Pressure in Bar",
                                 datasets : [{
@@ -203,7 +203,7 @@
                             };
 
 
-                            var brewPressureChart = new Chart(ctx, {
+                            var brewPressureChart = new Chart(cpx, {
                                 type: 'line',
                                 data: pressureData,
                                 options:{
@@ -238,19 +238,19 @@
             <canvas id="brewHumidityChart"></canvas>
             <body>
                 <script>
-                    var ctx = document.getElementById("brewHumidityChart").getContext("2d");
+                    var chx = document.getElementById("brewHumidityChart").getContext("2d");
                     var baseURL = "http://pidataspro.ddns.net:8056/";
-                    ctx.fillStyle = "white"
+                    chx.fillStyle = "white"
                     function drawRealHumidityChart() {
                         $.getJSON(baseURL.concat("shot_data"), function(results){
-                            var labels = [], humidity=[];
+                            var label3 = [], humidity=[];
                             $.each(results, function(i, field){
                                 labels.push(field.timestamp);
                                 humidity.push(field.ambientHumidity);
                             });
 
                             var humidityData = {
-                                labels: labels,
+                                labels: label3,
                                 xAxisID: "Time",
                                 yAxisID: "Humidity",
                                 datasets : [{
@@ -263,7 +263,7 @@
                             };
 
 
-                            var brewHumidityChart = new Chart(ctx, {
+                            var brewHumidityChart = new Chart(chx, {
                                 type: 'line',
                                 data: humidityData,
                                 options:{
