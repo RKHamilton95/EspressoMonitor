@@ -1,7 +1,4 @@
-var ctx = document.getElementById("myChart").getContext("2d");
-    var baseURL = "http://pidataspro.ddns.net:8056/";
-
-	function drawFinalShotChart() {
+	function drawFinalShotChart(var ctx,var baseURL) {
 		$.getJSON(baseURL.concat("shot_data"), function(results){
 			var labels = [], boilerTemp=[],pressure=[];
 			$.each(results, function(i, field){

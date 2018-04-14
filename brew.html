@@ -63,7 +63,9 @@
     <div class="col-md-7">
         <canvas id="myChart"></canvas>
      <script src="replayShot.js">
-        drawFinalShotChart();
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var baseURL = "http://pidataspro.ddns.net:8056/";
+        drawFinalShotChart(ctx,baseURL);
      </script>   
  </div>
  <!-- <div class="col-md-6">
