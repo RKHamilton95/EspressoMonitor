@@ -16,7 +16,7 @@
 		$.getJSON(baseURL.concat("data"), function(results){
 			var labels = [], boilerTemp=[],pressure=[];
 			$.each(results, function(i, field){
-				labels.push(field.timestamp);
+				labels.push(field.timeStamp);
 				boilerTemp.push(field.boilerTemp);
                 pressure.push(field.pressure);
 			});
