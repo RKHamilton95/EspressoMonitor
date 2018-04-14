@@ -1,4 +1,7 @@
-	function drawFinalShotChart() {
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var baseURL = "http://pidataspro.ddns.net:8056/";
+         
+        function drawFinalShotChart() {
 		$.getJSON(baseURL.concat("shot_data"), function(results){
 			var labels = [], boilerTemp=[],pressure=[];
 			$.each(results, function(i, field){
@@ -54,6 +57,5 @@
 				});
 		});
 	}
-	//setInterval(function(){
-	//	drawFinalShotChart();
-	//}, 2000);
+         
+    drawFinalShotChart();
