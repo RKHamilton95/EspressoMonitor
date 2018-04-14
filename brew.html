@@ -69,7 +69,7 @@
                 $.getJSON(baseURL.concat("shot_data"), function(results){
                     var labels = [], boilerTemp=[],weight=[],pressure=[];
                     $.each(results, function(i, field){
-                        labels.push(field.timestamp);
+                        labels.push(field.timeStamp);
                         boilerTemp.push(field.boilerTemp);
                         weight.push(field.weight);
                         pressure.push(field.pressure)
@@ -124,7 +124,7 @@
                         $.getJSON(baseURL.concat("shot_data"), function(results){
                             var label1 = [], boilerTemp=[],roomTemp=[];
                             $.each(results, function(i, field){
-                                label1.push(field.timestamp);
+                                label1.push(field.timeStamp);
                                 boilerTemp.push(field.boilerTemp);
                             });
 
@@ -185,7 +185,7 @@
                         $.getJSON(baseURL.concat("shot_data"), function(results){
                             var label2 = [], pressure=[];
                             $.each(results, function(i, field){
-                                label2.push(field.timestamp);
+                                label2.push(field.timeStamp);
                                 pressure.push(field.pressure);
                             });
 
