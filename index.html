@@ -6,54 +6,52 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="mainPage.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
     </head>
- 
-    <body class="main">
+    
+<body class="main">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+                <a class="navbar-brand" href="#">Raspberry Espresso</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="brew.html">Brew</a></li>
+                    <li><a href="ReplayShot.html">Replay Shot</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
 
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">Raspberry Espresso</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="index.html">Home</a></li>
-        <li><a href="brew.html">Brew</a></li>
-        <li><a href="#">Replay Shot</a></li>
-        <li><a href="#">Settings</a></li>
-      </ul>
-      
-    </div>
-  </div>
-</nav>
+            </div>
+        </div>
+    </nav>
     <div class="projinf">
-          <heading class="pTitle"><u><b>RaspDuino Expresso Machine and Logging:</b></u></heading>
-          <p class="pGraph">In this project we aimed to explore what was possible when it comes to creating the perfect shot of expresso. We created a monitor and logging system for Peter's Arduino/RaspberryPi based Expresso machine. Sensors used - Pressure of the shot, Temperature of the shot, Ambient Temperature and Humidity Sensors.</p>
-      </div>
-      <div class="gitDiv"><heading class="gitHeading"><b><u>GitHub Links:</u></b><br>
-          <a href="https://github.com/pshutt/RaspberryEspresso"><font color="white">RaspberryEspresso</font></a><br>
-          <a href="https://github.com/RKHamilton95/ExpressoMonitor"><font color="white">EspressoMonitor</font></a>
-           </heading>
-      </div>
+        <heading class="pTitle"><u><b>RaspDuino Expresso Machine and Logging:</b></u></heading>
+        <p class="pGraph">In this project we aimed to explore what was possible when it comes to creating the perfect shot of expresso. We created a monitor and logging system for Peter's Arduino/RaspberryPi based Expresso machine. Sensors used - Pressure of the shot, Temperature of the shot, Ambient Temperature and Humidity Sensors.</p>
+    </div>
+    <div class="gitDiv"><heading class="gitHeading"><b><u>GitHub Links:</u></b><br>
+        <a href="https://github.com/pshutt/RaspberryEspresso"><font color="white">RaspberryEspresso</font></a><br>
+        <a href="https://github.com/RKHamilton95/EspressoMonitor"><font color="white">EspressoMonitor</font></a>
+        </heading>
+    </div>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-        <script>
-            var socket = io.connect('http://192.168.1.184:3000');
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script>
+        var socket = io.connect('http://192.168.1.184:3000');
 
-        </script>
-    </body>
+    </script>
+</body>
 </html>
 
 
