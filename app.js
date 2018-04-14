@@ -2,8 +2,7 @@
 var express = require('express');  
 var app = express();  
 var server = require('http').createServer(app);  
-var io = require('socket.io')(server);
-
+var PythonShell = require('python-shell');
 
 var mysql = require('mysql')
 var connection = mysql.createConnection({
@@ -32,10 +31,18 @@ connection.query('SELECT * FROM normal_data', function (error, rows){
 })
 
 app.get('/on', function (req, res) {
-  res.send('Machine On')
+  PythonShell.run('../pythonMysqlScripts/sendData', {args: ['1']}, function (err, results) {
+  if (err) throw err;
+    res.send('Machine On')
+  // results is an array consisting of messages collected during execution
+  });
 })
-app.get('/on', function (req, res) {
-  res.send('Machine Off')
+app.get('/off', function (req, res) {
+  PythonShell.run('../pythonMysqlScripts/sendData', {args: ['2']}, function (err, results) {
+  if (err) throw err;
+    res.send('Machine Off')
+  // results is an array consisting of messages collected during execution
+  });
 })
 app.get('/brewOn', function (req, res) {
   res.send('Brewing On')
