@@ -31,14 +31,14 @@ connection.query('SELECT * FROM normal_data', function (error, rows){
 })
 
 app.get('/on', function (req, res) {
-  PythonShell.run('../pythonMysqlScripts/sendData', {args: ['1']};, function (err, results) {
+  PythonShell.run('../pythonMysqlScripts/sendData', {args: ['1']}, function (err, results) {
   if (err) throw err;
   // results is an array consisting of messages collected during execution
   });
   res.send('Machine On')
 })
 app.get('/off', function (req, res) {
-  PythonShell.run('../pythonMysqlScripts/sendData', {args: ['2']};, function (err, results) {
+  PythonShell.run('../pythonMysqlScripts/sendData', {args: ['2']}, function (err, results) {
   if (err) throw err;
     
   // results is an array consisting of messages collected during execution
