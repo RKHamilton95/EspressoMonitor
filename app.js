@@ -46,12 +46,15 @@ app.get('/off', function (req, res) {
   });
   res.send('Machine Off')
 })
-app.get('/brewOn', function (req, res) {
-  res.send('Brewing On')
+app.get('/brew', function (req, res) {
+  PythonShell.run('../pythonMysqlScripts/sendData.py', {args: ['3']}, function (err, results) {
+  if (err) throw err;
+    
+  // results is an array consisting of messages collected during execution
+  });
+  res.send('Brewing')
 })
-app.get('/brewOff', function (req, res) {
-  res.send('brewingOff')
-})
+
 
 
 
