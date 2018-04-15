@@ -31,29 +31,14 @@ connection.query('SELECT * FROM normal_data', function (error, rows){
 });
 })
 
-app.get('/getBoilerTemp', function(req,res){
-connection.query('select boilerTemp,max(id) from normal_data;', function (error, rows){
+app.get('/getLastNormal', function(req,res){
+connection.query('select boilerTemp,ambientTemp,ambientHumidity,max(id) from normal_data;', function (error, rows){
 	if(error) throw error;
 	res.json(rows);
 
 });
 })
 
-app.get('/getAmbientTemp', function(req,res){
-connection.query('select ambientTemp,max(id) from normal_data;', function (error, rows){
-	if(error) throw error;
-	res.json(rows);
-
-});
-})
-
-app.get('/getHumidity', function(req,res){
-connection.query('select ambientHumidity,max(id) from normal_data;', function (error, rows){
-	if(error) throw error;
-	res.json(rows);
-
-});
-})
 
 
 app.get('/on', function (req, res) {
