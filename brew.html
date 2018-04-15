@@ -53,12 +53,12 @@
                         //weight.push(field.weight);
                         //pressure.push(field.pressure);
                     });
-
+                    
                     var data = google.visualization.arrayToDataTable([
                         ['Label', 'Value'],
-                        ['Boiler Temp', boilerTemp],
-                        //['Weight', weight],
-                        //['Pressure', pressure]
+                        ['Boiler Temp', 8],
+                        ['Weight', 10],
+                        ['Pressure', 20]
                     ]);
 
                     var options = {
@@ -76,14 +76,14 @@
                         data.setValue(boilerTemp);
                         chart.draw(data, options);
                     }, 2000);
-                    /*setInterval(function() {
+                    setInterval(function() {
                         data.setValue(roomTemp);
                         chart.draw(data, options);
                     }, 2000);
                     setInterval(function() {
                         data.setValue(pressure);
                         chart.draw(data, options);
-                    }, 2000);*/
+                    }, 2000);
                 }
                           drawChart();
         </script>
