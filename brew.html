@@ -50,15 +50,15 @@
                     var labels = [], boilerTemp,weight,pressure;
                     $.each(results, function(i, field){
                         boilerTemp.push(field.boilerTemp);
-                        weight.push(field.weight);
-                        pressure.push(field.pressure);
+                        //weight.push(field.weight);
+                        //pressure.push(field.pressure);
                     });
 
                     var data = google.visualization.arrayToDataTable([
                         ['Label', 'Value'],
                         ['Boiler Temp', boilerTemp],
-                        ['Weight', weight],
-                        ['Pressure', pressure]
+                        //['Weight', weight],
+                        //['Pressure', pressure]
                     ]);
 
                     var options = {
@@ -76,14 +76,14 @@
                         data.setValue(boilerTemp);
                         chart.draw(data, options);
                     }, 2000);
-                    setInterval(function() {
+                    /*setInterval(function() {
                         data.setValue(roomTemp);
                         chart.draw(data, options);
                     }, 2000);
                     setInterval(function() {
                         data.setValue(pressure);
                         chart.draw(data, options);
-                    }, 2000);
+                    }, 2000);*/
                 }
                           drawChart();
         </script>
