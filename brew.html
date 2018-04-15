@@ -44,21 +44,32 @@
             google.charts.load('current', {'packages':['gauge']});
             google.charts.setOnLoadCallback(drawChart);
 
-            function drawChart() {
+            
+                
+            function getData() {
                 var baseURL = "http://pidataspro.ddns.net:8056/";
                 $.getJSON(baseURL.concat("getLastNormal"), function(results){
+                    
                     var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
                     $.each(results, function(i, field){
                         ambientTemp.push(field.ambientTemp);
                         boilerTemp.push(field.boilerTemp);
                         ambientHumidity.push(field.ambientHumidity);
                     });
-
+                    var all = [];
+                    all[0] = ambientTemp;
+                    all[1] = boilerTemp;
+                    all[2] = ambientHumidity;
+                    return all;
+            }
+            function drawChart() {
+                
+                    var all = getData();
                     var data = google.visualization.arrayToDataTable([
                         ['Label', 'Value'],
-                        ['Boiler Temp', boilerTemp[0]],
-                        ['Room Temp', ambientTemp[0]],
-                        ['Humidity', ambientHumidity[0]]
+                        ['Boiler Temp', all[0].boilerTemp[0]],
+                        ['Room Temp', all[1].ambientTemp[0]],
+                        ['Humidity', all[2].ambientHumidity[0]]
                     ]);
 
                     var options = {
@@ -73,7 +84,7 @@
                     chart.draw(data, options);
 
                     setInterval(function() {
-                        drawChart();
+                        //drawChart();
                        // data.setValue(0, 1, boilerTemp[0]);
                         //chart.draw(data, options);
                     }, 2000);
