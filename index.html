@@ -38,17 +38,28 @@
         <img class="container-fluid" src= "http://pidataspro.ddns.net:8057?action=stream" width="640" height="480"/>
     </div>
     <button id="on">Turn On Machine</button>
+    <button id="off">Turn On Machine</button>
+    <button id="brew">Turn On Machine</button>
+    
     <script>
    $(document).ready(function(){           
-     // Removed the unnecessary `$(function() { ...` here and the matching closing bits at the end
      $("#on").click(function(e){
         e.preventDefault();
         $.ajax({
-           type: "GET",
-           url: "on"
-            });
+           type: "POST", url: "on"});
         });
+     $("#off").click(function(e){
+        e.preventDefault();
+        $.ajax({
+           type: "POST", url: "on"});
         });
+     $("#brew").click(function(e){
+        e.preventDefault();
+        $.ajax({
+           type: "POST", url: "on"});
+        });
+    });
+
     </script>
 
     <br>
