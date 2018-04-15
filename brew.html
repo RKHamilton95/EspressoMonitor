@@ -46,13 +46,12 @@
 
             function drawChart() {
                 var baseURL = "http://pidataspro.ddns.net:8056/";
-                $.getJSON(baseURL.concat("shot_data"), function(results){
-                    var labels = [], boilerTemp=[],weight=[],pressure=[];
+                $.getJSON(baseURL.concat("getBoilerTemp"), function(results){
+                    var labels = [], boilerTemp,weight,pressure;
                     $.each(results, function(i, field){
-                        labels.push(field.timeStamp);
                         boilerTemp.push(field.boilerTemp);
                         weight.push(field.weight);
-                        pressure.push(field.pressure)
+                        pressure.push(field.pressure);
                     });
 
                     var data = google.visualization.arrayToDataTable([
