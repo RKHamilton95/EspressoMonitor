@@ -10,9 +10,8 @@ pTitle
 
 div.projinf
 {
-   margin: 10%;
-   width: 390px;
-   padding: auto;
+   width: 70%;
+   padding: 0px;
    height: auto;
    color: white;
    border-style: inset;
@@ -23,7 +22,6 @@ div.projinf
 
 div.gitDiv
 {
-   margin: 10%;
    width: 300px;
    height: auto;
    color: white;
