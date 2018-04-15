@@ -50,6 +50,7 @@
                 var baseURL = "http://pidataspro.ddns.net:8056/";
                 var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
                 var all = [];
+                
                 $.getJSON(baseURL.concat("getLastNormal"), function(results){
                     $.each(results, function(i, field){
                         ambientTemp.push(field.ambientTemp);
@@ -62,7 +63,7 @@
                 return all;
             }
             function drawChart() {
-                
+                setInterval(function() {
                    $.getJSON(baseURL.concat("getLastNormal"), function(results){
                        var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
                 var all = [];
@@ -89,10 +90,10 @@
                     var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
 
                     chart.draw(data, options);
-
+/*
                     setInterval(function() {
                         //drawChart();
-                       // data.setValue(0, 1, boilerTemp[0]);
+                        data.setValue(0, 1, boilerTemp[0]);
                         chart.draw(data, options);
                     }, 2000);
                     setInterval(function() {
@@ -103,8 +104,9 @@
                     //    data.setValue(2, 1, ambientHumidity[0]);
                     //    chart.draw(data, options);
                     }, 1000);
+                    */
                 });
-                        
+                }
                 }
         </script>
         <body>
