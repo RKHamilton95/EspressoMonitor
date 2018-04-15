@@ -15,6 +15,11 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
+app.get("/car/shot_data:shotID", (req, res) => {  
+    console.log(req.params);
+    res.send(req.params)
+})
+
 app.get('/shot_data', function(req,res){
 connection.query('SELECT * FROM shot_data', function (error, rows){
 	if(error) throw error;
