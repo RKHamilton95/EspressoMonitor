@@ -50,7 +50,7 @@
             <option value="shot_data">Shot Data</option>
             <option value="bean_data">Bean Data</option>
         </select>
-
+        <p id="table"></p>
         <script>
             function change_myselect(sel) {
                 var obj, dbParam, xmlhttp, myObj, x, txt = "";
@@ -65,7 +65,7 @@
                             txt += "<tr><td>" + myObj[x].name + "</td></tr>";
                         }
                         txt += "</table>"        
-                        document.getElementById("demo").innerHTML = txt;
+                        document.getElementById("table").innerHTML = txt;
                     }
                 };
                 xmlhttp.open("POST", "json_demo_db_post.php", true);
