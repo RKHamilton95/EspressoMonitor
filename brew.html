@@ -64,6 +64,8 @@
             function drawChart() {
                 
                    $.getJSON(baseURL.concat("getLastNormal"), function(results){
+                       var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
+                var all = [];
                     $.each(results, function(i, field){
                         ambientTemp.push(field.ambientTemp);
                         boilerTemp.push(field.boilerTemp);
