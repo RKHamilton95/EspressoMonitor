@@ -53,9 +53,9 @@
 
                 var boilerTemp,ambientTemp,humidity;
 
-                boilerTemp = JSON.parse(field.boilerTemp);
-                ambientTemp = JSON.parse(field.ambientTemp);
-                humidity = JSON.parse(field.ambientHumidity);
+                boilerTemp = JSON.parse(results.boilerTemp);
+                ambientTemp = JSON.parse(results.ambientTemp);
+                humidity = JSON.parse(results.ambientHumidity);
             }
             var data = google.visualization.arrayToDataTable([
                 ['Label', 'Value'],
