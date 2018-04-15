@@ -86,7 +86,7 @@
                         chart.draw(data, options);
                     }, 2000);
                 }
-                drawChart();
+                          drawChart();
         </script>
         <body>
             <div id="chart_div" style="width: 700px; height: 300px;"></div>
@@ -100,7 +100,7 @@
                     var ctx = document.getElementById("brewTempChart").getContext("2d");
                     var baseURL = "http://pidataspro.ddns.net:8056/";
                     ctx.fillStyle = "white"
-                    
+
                     function drawRealTempChart() {
                         $.getJSON(baseURL.concat("shot_data"), function(results){
                             var label1 = [], boilerTemp=[],roomTemp=[];
