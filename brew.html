@@ -118,7 +118,7 @@
                         chartBoilerTemp.draw(dataBoilerTemp, boilerTempOptions);
                         chartAmbientTemp.draw(dataAmbientTemp,ambientTempOptions);
                         chartHumidity.draw(dataHumidity,humidityOptions);
-                        
+
                         setInterval(function() {
                             dataBoilerTemp.setValue(0, 1, boilerTemp[0]);
                             chartBoilerTemp.draw(dataBoilerTemp, boilerTempOptions);
@@ -138,10 +138,13 @@
         </script>
         <body>
             <div id="chartBoilerTemp" style="width: 300px; height: 150px;"></div>
+        </body>
+        <body>
             <div id="chartAmbientTemp" style="width: 300px; height: 1500px;"></div>
+        </body>
+        <body>
             <div id="chartHumidity" style="width: 300px; height: 150px;"></div>
         </body>
-
         <!---Temp Chart--->
         <div class="container-fluid">
             <canvas id="brewTempChart"></canvas>
