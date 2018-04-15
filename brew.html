@@ -46,7 +46,7 @@
 
             function drawChart() {
                 var baseURL = "http://pidataspro.ddns.net:8056/";
-                $.getJSON(baseURL.concat("shot_data"), function(results){
+                $.getJSON(baseURL.concat("getLastNormal"), function(results){
                     var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
                     $.each(results, function(i, field){
                         ambientTemp.push(field.ambientTemp);
