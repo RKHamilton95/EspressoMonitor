@@ -54,7 +54,7 @@
         <script>
             function change_myselect(sel) {
                 var obj, dbParam, xmlhttp, myObj, x, txt = "";
-                obj = { "table":sel, "limit":20 };
+                obj = { "table":sel, "limit":100 };
                 dbParam = JSON.stringify(obj);
                 xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
