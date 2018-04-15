@@ -46,17 +46,17 @@
      $("#on").click(function(e){
         e.preventDefault();
         $.ajax({
-           type: "GET", url: "on"});
+           type: "POST", url: "on"});
         });
      $("#off").click(function(e){
         e.preventDefault();
         $.ajax({
-           type: "GET", url: "on"});
+           type: "POST", url: "off"});
         });
      $("#brew").click(function(e){
         e.preventDefault();
         $.ajax({
-           type: "GET", url: "on"});
+           type: "POST", url: "brew"});
         });
     });
 
