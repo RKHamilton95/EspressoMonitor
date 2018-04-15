@@ -8,13 +8,6 @@ pTitle
    text-decoration-color: aliceblue;
 }
 
-body {
-   background-image: url("mainPageBackground.jpg");
-   background-repeat: no-repeat;
-   background-size: auto;
-   background-color: #cccccc;
-}
-
 div.projinf
 {
    margin: auto;

@@ -11,88 +11,90 @@
 
 
     </head>
-    
-<body class="main">
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>                        
-                </button>
-                <a class="navbar-brand" href="#">PiSproDB</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="brew.html">Brew</a></li>
-                    <li><a href="ReplayShot.html">Replay Shot</a></li>
-                    <li><a href="settings.html">Settings</a></li>
-                </ul>
+    <body style="background-color:#37474f ;">
 
+    <body class="main">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href="#">PiSproDB</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.html">Home</a></li>
+                        <li><a href="brew.html">Brew</a></li>
+                        <li><a href="ReplayShot.html">Replay Shot</a></li>
+                        <li><a href="settings.html">Settings</a></li>
+                    </ul>
+
+                </div>
             </div>
+        </nav>
+
+        <div>
+            <img class="container-fluid" src= "http://pidataspro.ddns.net:8057?action=stream" width="640" height="480"/>
         </div>
-    </nav>
-    <div>
-        <img class="container-fluid" src= "http://pidataspro.ddns.net:8057?action=stream" width="640" height="480"/>
-    </div>
-    <div class="btn" container-fluid>
-      <button type="button" class="btn btn-primary" id="on">Turn On Machine</button>
-      <button type="button" class="btn btn-primary" id="off">Turn Off Machine</button>
-      <button type="button" class="btn btn-primary" id="brew">Pull Shot</button>
-    </div>
-    <script>
-   $(document).ready(function(){           
-     $("#on").click(function(e){
-        e.preventDefault();
-        $.ajax({
-           type: "GET", url: "on"});
-        });
-     $("#off").click(function(e){
-        e.preventDefault();
-        $.ajax({
-           type: "GET", url: "off"});
-        });
-     $("#brew").click(function(e){
-        e.preventDefault();
-        $.ajax({
-           type: "GET", url: "brew"});
-        });
-    });
+        <div class="btn" container-fluid>
+            <button type="button" class="btn btn-primary" id="on">Turn On Machine</button>
+            <button type="button" class="btn btn-primary" id="off">Turn Off Machine</button>
+            <button type="button" class="btn btn-primary" id="brew">Pull Shot</button>
+        </div>
+        <script>
+            $(document).ready(function(){           
+                $("#on").click(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        type: "GET", url: "on"});
+                });
+                $("#off").click(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        type: "GET", url: "off"});
+                });
+                $("#brew").click(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        type: "GET", url: "brew"});
+                });
+            });
 
-    </script>
+        </script>
 
-    <br>
-    <br>
-    <div class="projinf" container-fluid>
-        <heading class="pTitle"><u><b>PiSproDB Espresso Machine and Logging:</b></u></heading>
-        <p class="pGraph">In this project we aimed to explore what was possible when it comes to creating the perfect shot of espresso. We created a monitor and logging system for Peter's Arduino/RaspberryPi based espresso machine. 
-        Data Collected:
+        <br>
+        <br>
+        <div class="projinf" container-fluid>
+            <heading class="pTitle"><u><b>PiSproDB Espresso Machine and Logging:</b></u></heading>
+            <p class="pGraph">In this project we aimed to explore what was possible when it comes to creating the perfect shot of espresso. We created a monitor and logging system for Peter's Arduino/RaspberryPi based espresso machine. 
+                Data Collected:
             <ul>
-            <li> Espresso Shot Pressure </li>
-            <li> Espresso Shot Time</li>
-            <li> Boiler Temperature</li>
-            <li> Ambient Temperature</li>
-            <li> Ambient Humidity</li>
+                <li> Espresso Shot Pressure </li>
+                <li> Espresso Shot Time</li>
+                <li> Boiler Temperature</li>
+                <li> Ambient Temperature</li>
+                <li> Ambient Humidity</li>
             </ul>
-        </p>
+            <p/>
 
-    </div>
-    <div class="gitDiv" container-fluid><heading class="gitHeading"><b><u>GitHub Links:</u></b><br>
-        <a href="https://github.com/pshutt/RaspberryEspresso"><font color="white">RaspberryEspresso</font></a><br>
-        <a href="https://github.com/RKHamilton95/EspressoMonitor"><font color="white">EspressoMonitor</font></a>
-        </heading>
-    </div>
+        </div>
+        <div class="gitDiv" container-fluid><heading class="gitHeading"><b><u>GitHub Links:</u></b><br>
+            <a href="https://github.com/pshutt/RaspberryEspresso"><font color="white">RaspberryEspresso</font></a><br>
+            <a href="https://github.com/RKHamilton95/EspressoMonitor"><font color="white">EspressoMonitor</font></a>
+            </heading>
+        </div>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script>
-        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script>
 
-    </script>
-</body>
-</html>
+
+        </script>
+        </body>
+        <html/>
 
 
 
