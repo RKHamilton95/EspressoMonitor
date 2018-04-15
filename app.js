@@ -15,7 +15,7 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-app.get("/car/shot_data:shotID", (req, res) => {  
+app.get("/car/shot_data/:shotID", (req, res) => {  
     console.log(req.params);
     res.send(req.params)
 })
