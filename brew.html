@@ -73,15 +73,15 @@
                     chart.draw(data, options);
 
                     setInterval(function() {
-                        data.setValue(6);
+                        data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
                         chart.draw(data, options);
                     }, 2000);
                     setInterval(function() {
-                        data.setValue(8);
+                        data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
                         chart.draw(data, options);
                     }, 2000);
                     setInterval(function() {
-                        data.setValue(80);
+                        data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
                         chart.draw(data, options);
                     }, 2000);
                 }
