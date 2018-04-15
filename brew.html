@@ -73,15 +73,15 @@
                     chart.draw(data, options);
 
                     setInterval(function() {
-                        data.setValue(boilerTemp);
+                        data.setValue(6);
                         chart.draw(data, options);
                     }, 2000);
                     setInterval(function() {
-                        data.setValue(roomTemp);
+                        data.setValue(8);
                         chart.draw(data, options);
                     }, 2000);
                     setInterval(function() {
-                        data.setValue(pressure);
+                        data.setValue(80);
                         chart.draw(data, options);
                     }, 2000);
                 }
