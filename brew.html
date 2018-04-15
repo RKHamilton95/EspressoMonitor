@@ -56,9 +56,9 @@
 
                     var data = google.visualization.arrayToDataTable([
                         ['Label', 'Value'],
-                        ['Boiler Temp', boilerTemp],
-                        ['Ambient Temp', ambientTemp],
-                        ['Humidity', ambientHumidity]
+                        ['Boiler Temp', boilerTemp[0]],
+                        ['Ambient Temp', ambientTemp[0]],
+                        ['Humidity', ambientHumidity[0]]
                     ]);
 
                     var options = {
