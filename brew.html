@@ -73,28 +73,17 @@
                     chart.draw(data, options);
 
                     setInterval(function() {
-                        $.getJSON(baseURL.concat("getLastNormal"), function(results){
-                    var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
-                    $.each(results, function(i, field){
-                        ambientTemp.push(field.ambientTemp);
-                        boilerTemp.push(field.boilerTemp);
-                        ambientHumidity.push(field.ambientHumidity);
-                    });
-                            
-                        data.setValue(0, 1, boilerTemp[0]);
-                        chart.draw(data, options);
-                        
-                        data.setValue(1, 1, ambientTemp[0]);
-                        chart.draw(data, options);
-                        
-                        data.setValue(2, 1, ambientHumidity[0]);
-                        chart.draw(data, options);
+                        drawChart();
+                       // data.setValue(0, 1, boilerTemp[0]);
+                        //chart.draw(data, options);
                     }, 2000);
                     setInterval(function() {
-                        
+                        //data.setValue(1, 1, ambientTemp[0]);
+                        ///chart.draw(data, options);
                     }, 2000);
                     setInterval(function() {
-                        
+                    //    data.setValue(2, 1, ambientHumidity[0]);
+                    //    chart.draw(data, options);
                     }, 2000);
 
                           });
