@@ -65,10 +65,10 @@
             }
             function drawChart() {
                 
-                    //var all = getData();
+                    var all = getData();
                     var data = google.visualization.arrayToDataTable([
                         ['Label', 'Value'],
-                        ['Boiler Temp', 3],
+                        ['Boiler Temp', all[0]],
                         ['Room Temp', 1],
                         ['Humidity', 2]
                     ]);
