@@ -91,21 +91,21 @@
                         ]);
 
                         var boilerTempOptions = {
-                            width: 700, height: 300,
+                            width: 300, height: 150,
                             redFrom: 250, redTo: 300,
                             yellowFrom: 150, yellowTo: 250,
                             minorTicks: 10
                         };
 
                         var ambientTempOptions = {
-                            width: 700, height: 300,
+                            width: 300, height: 150,
                             redFrom: 90, redTo: 120,
                             yellowFrom:60, yellowTo: 90,
                             minorTicks: 5
                         };
 
                         var humidityOptions = {
-                            width: 700, height: 300,
+                            width: 300, height: 150,
                             redFrom: 14, redTo: 20,
                             yellowFrom: 8, yellowTo: 14,
                             minorTicks: 1
@@ -115,8 +115,10 @@
                         var chartAmbientTemp = new google.visualization.Gauge(document.getElementById('chartAmbientTemp'));
                         var chartHumidity = new google.visualization.Gauge(document.getElementById('chartHumidity'));
 
-                        //chartTemp.draw(data1, options);
-
+                        chartBoilerTemp.draw(dataBoilerTemp, boilerTempOptions);
+                        chartAmbientTemp.draw(dataAmbientTemp,ambientTempOptions);
+                        chartHumidity.draw(dataHumidity,humidityOptions);
+                        
                         setInterval(function() {
                             dataBoilerTemp.setValue(0, 1, boilerTemp[0]);
                             chartBoilerTemp.draw(dataBoilerTemp, boilerTempOptions);
@@ -135,9 +137,9 @@
             }
         </script>
         <body>
-            <div id="chartBoilerTemp" style="width: 700px; height: 300px;"></div>
-            <div id="chartAmbientTemp" style="width: 700px; height: 300px;"></div>
-            <div id="chartHumidity" style="width: 700px; height: 300px;"></div>
+            <div id="chartBoilerTemp" style="width: 300px; height: 150px;"></div>
+            <div id="chartAmbientTemp" style="width: 300px; height: 1500px;"></div>
+            <div id="chartHumidity" style="width: 300px; height: 150px;"></div>
         </body>
 
         <!---Temp Chart--->
