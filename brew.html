@@ -57,7 +57,7 @@
                     var data = google.visualization.arrayToDataTable([
                         ['Label', 'Value'],
                         ['Boiler Temp', boilerTemp[0]],
-                        ['Ambient Temp', ambientTemp[0]],
+                        ['Room Temp', ambientTemp[0]],
                         ['Humidity', ambientHumidity[0]]
                     ]);
 
@@ -76,15 +76,15 @@
                         drawChart();
                        // data.setValue(0, 1, boilerTemp[0]);
                         //chart.draw(data, options);
-                    }, 2000);
+                    }, 1000);
                     setInterval(function() {
                         //data.setValue(1, 1, ambientTemp[0]);
                         ///chart.draw(data, options);
-                    }, 2000);
+                    }, 1000);
                     setInterval(function() {
                     //    data.setValue(2, 1, ambientHumidity[0]);
                     //    chart.draw(data, options);
-                    }, 2000);
+                    }, 1000);
 
                           });
                 }
