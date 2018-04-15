@@ -46,17 +46,17 @@
      $("#on").click(function(e){
         e.preventDefault();
         $.ajax({
-           type: "POST", url: "on"});
+           type: "GET", url: "on"});
         });
      $("#off").click(function(e){
         e.preventDefault();
         $.ajax({
-           type: "POST", url: "off"});
+           type: "GET", url: "off"});
         });
      $("#brew").click(function(e){
         e.preventDefault();
         $.ajax({
-           type: "POST", url: "brew"});
+           type: "GET", url: "brew"});
         });
     });
 
@@ -64,7 +64,7 @@
 
     <br>
     <br>
-    <div class="projinf">
+    <div class="projinf" container-fluid>
         <heading class="pTitle"><u><b>PiSproDB Espresso Machine and Logging:</b></u></heading>
         <p class="pGraph">In this project we aimed to explore what was possible when it comes to creating the perfect shot of espresso. We created a monitor and logging system for Peter's Arduino/RaspberryPi based espresso machine. 
         Data Collected:
@@ -74,7 +74,7 @@
             <li> Boiler Temperature</li>
             <li> Ambient Temperature</li>
             <li> Ambient Humidity</li>
-            </u/>
+            </ul>
         </p>
 
     </div>

@@ -31,14 +31,14 @@ connection.query('SELECT * FROM normal_data', function (error, rows){
 });
 })
 
-app.post('/on', function (req, res) {
+app.get('/on', function (req, res) {
   PythonShell.run('../pythonMysqlScripts/sendData.py', {args: ['1']},function (err, results) {
   if (err) throw err;
   // results is an array consisting of messages collected during execution
   });
   res.send('Machine On')
 })
-app.post('/off', function (req, res) {
+app.get('/off', function (req, res) {
   PythonShell.run('../pythonMysqlScripts/sendData.py', {args: ['2']}, function (err, results) {
   if (err) throw err;
     
@@ -46,7 +46,7 @@ app.post('/off', function (req, res) {
   });
   res.send('Machine Off')
 })
-app.post('/brew', function (req, res) {
+app.get('/brew', function (req, res) {
   PythonShell.run('../pythonMysqlScripts/sendData.py', {args: ['3']}, function (err, results) {
   if (err) throw err;
     
