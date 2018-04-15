@@ -58,7 +58,7 @@
                         boilerTemp.push(field.boilerTemp);
                         ambientHumidity.push(field.ambientHumidity);
                     });
-                    all = [ambientTemp[0],ambientTemp[0],ambientTemp[0]];
+                    all = [ambientTemp[0],boilerTemp[0],ambientHumidity[0]];
                     
                     
             });
@@ -69,9 +69,9 @@
                     var all = getData();
                     var data = google.visualization.arrayToDataTable([
                         ['Label', 'Value'],
-                        ['Boiler Temp', all[1]],
-                        ['Room Temp', 1],
-                        ['Humidity', 2]
+                        ['Boiler Temp', all[0]],
+                        ['Room Temp', all[1]],
+                        ['Humidity', all[2]]
                     ]);
 
                     var options = {
