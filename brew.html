@@ -115,19 +115,19 @@
                         var chartAmbientTemp = new google.visualization.Gauge(document.getElementById('chartAmbientTemp'));
                         var chartHumidity = new google.visualization.Gauge(document.getElementById('chartHumidity'));
 
-                        // chartTemp.draw(data1, options);
+                        //chartTemp.draw(data1, options);
 
                         setInterval(function() {
-                            data.setValue(0, 1, boilerTemp[0]);
-                            chart.draw(dataBoilerTemp, boilerTempOptions);
+                            dataBoilerTemp.setValue(0, 1, boilerTemp[0]);
+                            chartBoilerTemp.draw(dataBoilerTemp, boilerTempOptions);
                         }, 2000);
                         setInterval(function() {
-                            data.setValue(1, 1, ambientTemp[0]);
-                            chart.draw(dataAmbientTemp, ambientTempOptions);
+                            dataAmbientTemp.setValue(1, 1, ambientTemp[0]);
+                            chartAmbientTemp.draw(dataAmbientTemp, ambientTempOptions);
                         }, 1000);
                         setInterval(function() {
-                            data.setValue(2, 1, ambientHumidity[0]);
-                            chart.draw(dataHumidity, humidityOptions);
+                            dataHumidity.setValue(2, 1, ambientHumidity[0]);
+                            chartHumidity.draw(dataHumidity, humidityOptions);
                         }, 1000);
 
                     });
