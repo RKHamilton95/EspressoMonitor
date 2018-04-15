@@ -51,23 +51,25 @@
                 var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
                 var all = [];
                 $.getJSON(baseURL.concat("getLastNormal"), function(results){
-                    
-                    
                     $.each(results, function(i, field){
                         ambientTemp.push(field.ambientTemp);
                         boilerTemp.push(field.boilerTemp);
                         ambientHumidity.push(field.ambientHumidity);
-                    });
-                    
-                    
-            });
+                    });  
+                });
                 all = [ambientTemp[0],boilerTemp[0],ambientHumidity[0]];
                 //all = [1,2,3];
                 return all;
             }
             function drawChart() {
                 
-                    var all = getData();
+                   $.getJSON(baseURL.concat("getLastNormal"), function(results){
+                    $.each(results, function(i, field){
+                        ambientTemp.push(field.ambientTemp);
+                        boilerTemp.push(field.boilerTemp);
+                        ambientHumidity.push(field.ambientHumidity);
+                    });
+                      all = [ambientTemp[0],boilerTemp[0],ambientHumidity[0]]; 
                     var data = google.visualization.arrayToDataTable([
                         ['Label', 'Value'],
                         ['Boiler Temp', all[0]],
@@ -99,7 +101,7 @@
                     //    data.setValue(2, 1, ambientHumidity[0]);
                     //    chart.draw(data, options);
                     }, 1000);
-
+                });
                         
                 }
         </script>
