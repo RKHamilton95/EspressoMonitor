@@ -39,74 +39,189 @@
   </div>
 </nav>
 
-    <div class="col-md-7">
-        <canvas id="myChart"></canvas>
-        <body>
-     <script>
-        var ctx = document.getElementById("myChart").getContext("2d");
-        var baseURL = "http://pidataspro.ddns.net:8056/";
-         
-        function drawFinalShotChart() {
-		$.getJSON(baseURL.concat("shot_data"), function(results){
-			var labels = [], boilerTemp=[],pressure=[];
-			$.each(results, function(i, field){
-				labels.push(field.timeStamp);
-				boilerTemp.push(field.boilerTemp);
-                pressure.push(field.pressure);
-			});
+    <!---Temp Chart--->
+        <div class="container-fluid">
+            <canvas id="brewTempChart"></canvas>
+            <body>
+                <script>
+                    var ctx = document.getElementById("brewTempChart").getContext("2d");
+                    var baseURL = "http://pidataspro.ddns.net:8056/";
+                    ctx.fillStyle = "white"
+                    
+                    function drawRealTempChart() {
+                        $.getJSON(baseURL.concat("shot_data"), function(results){
+                            var label1 = [], boilerTemp=[],roomTemp=[];
+                            $.each(results, function(i, field){
+                                label1.push(field.timeStamp);
+                                boilerTemp.push(field.boilerTemp);
+                            });
 
-			var tempData = {
-				labels: labels,
-				xAxisID: "Time",
-				yAxisID: "Temperature in F",
-				datasets : [{
-					label: 'Boiler Temperature',
-					backgroundColor: "rgba(153,255,51,0.4)",
-					data: boilerTemp,
-					radius: 2,
-					fill: false
-				},
-				{
-					label: 'Pressure',
-					backgroundColor: "rgba(255,153,0,0.4)",
-					data: pressure,
-					radius: 2
-				}
-				]
-			};
+                            var tempData = {
+                                labels: label1,
+                                xAxisID: "Time",
+                                yAxisID: "Temperature in F",
+                                datasets : [{
+                                    label: 'Boiler Temperature',
+                                    backgroundColor: "rgba(153,255,51,0.4)",
+                                    data: boilerTemp,
+                                    radius: 2,
+                                    fill: false
+                                }]
+                            };
 
 
-			var myChart = new Chart(ctx, {
-				type: 'line',
-				data: tempData,
-				options:{
-					animation:{
-						duration: 0
-					},
-					title: {
-						fontSize: 20,
-						display: true,
-						text: "Temp/Pressure"},
-						
-						scales: {
-							yAxes: [{
-								ticks: {
-									stepSize: 1
-								}
-							}]
-							
-						}
+                            var brewTempChart = new Chart(ctx, {
+                                type: 'line',
+                                data: tempData,
+                                options:{
+                                    animation:{
+                                        duration: 0
+                                    },
+                                    title: {
+                                        fontSize: 20,
+                                        display: true,
+                                        text: "Boiler Temperature"},
+
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                stepSize: 20
+                                            }
+                                        }]
+
+                                    }
 
 
-					}
-				});
-		});
-	}
-         
-    drawFinalShotChart();
-     </script> 
-    </body>
- </div>
+                                }
+                            });
+                        });
+                    }
+                    drawRealTempChart();
+                </script> 
+            </body>
+        </div>
+        <!---Pressure Chart--->
+        <div class="container-fluid">
+            <canvas id="brewPressureChart"></canvas>
+            <body>
+                <script>
+                    var cpx = document.getElementById("brewPressureChart").getContext("2d");
+                    var baseURL = "http://pidataspro.ddns.net:8056/";
+                    cpx.fillStyle = "white"
+
+                    function drawRealPressureChart() {
+                        $.getJSON(baseURL.concat("shot_data"), function(results){
+                            var label2 = [], pressure=[];
+                            $.each(results, function(i, field){
+                                label2.push(field.timeStamp);
+                                pressure.push(field.pressure);
+                            });
+
+                            var pressureData = {
+                                labels: label2,
+                                xAxisID: "Time",
+                                yAxisID: "Pressure in Bar",
+                                datasets : [{
+                                    label: 'Pressure',
+                                    backgroundColor: "rgba(153,255,51,0.4)",
+                                    data: pressure,
+                                    radius: 2,
+                                    fill: false
+                                }]
+                            };
+
+
+                            var brewPressureChart = new Chart(cpx, {
+                                type: 'line',
+                                data: pressureData,
+                                options:{
+                                    animation:{
+                                        duration: 0
+                                    },
+                                    title: {
+                                        fontSize: 20,
+                                        display: true,
+                                        text: "Pressure"},
+
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                stepSize: 1
+                                            }
+                                        }]
+
+                                    }
+
+
+                                }
+                            });
+                        });
+                    }
+                    drawRealPressureChart();
+                </script> 
+            </body>
+        </div>
+        <!---Humidity Chart--->
+        <div class="container-fluid">
+            <canvas id="brewHumidityChart"></canvas>
+            <body>
+                <script>
+                    var chx = document.getElementById("brewHumidityChart").getContext("2d");
+                    var baseURL = "http://pidataspro.ddns.net:8056/";
+                    chx.fillStyle = "white"
+                    function drawRealHumidityChart() {
+                        $.getJSON(baseURL.concat("shot_data"), function(results){
+                            var label3 = [], humidity=[];
+                            $.each(results, function(i, field){
+                                labels.push(field.timestamp);
+                                humidity.push(field.ambientHumidity);
+                            });
+
+                            var humidityData = {
+                                labels: label3,
+                                xAxisID: "Time",
+                                yAxisID: "Humidity",
+                                datasets : [{
+                                    label: 'Humidity',
+                                    backgroundColor: "rgba(153,255,51,0.4)",
+                                    data: humidity,
+                                    radius: 2,
+                                    fill: false
+                                }]
+                            };
+
+
+                            var brewHumidityChart = new Chart(chx, {
+                                type: 'line',
+                                data: humidityData,
+                                options:{
+                                    animation:{
+                                        duration: 0
+                                    },
+                                    title: {
+                                        fontSize: 20,
+                                        display: true,
+                                        text: "Humidity"},
+
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                stepSize: 1
+                                            }
+                                        }]
+
+                                    }
+
+
+                                }
+                            });
+                        });
+                    }
+                    drawRealHumidityChart();
+                </script> 
+            </body>
+        </div>
+        <script>
  <!-- <div class="col-md-6">
     <h2 id="header" style="color:white ;"></h2>
 
