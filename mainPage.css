@@ -17,10 +17,10 @@ body {
 
 div.projinf
 {
-   width: auto;
+   margin: auto;
+   width: 390px;
    height: auto;
    color: white;
-   background-color: lightgray;
    border-style: inset;
    text-align: center;
    font-size: 25px;
@@ -29,10 +29,10 @@ div.projinf
 
 div.gitDiv
 {
-   width: auto;
+   margin: auto;
+   width: 300px;
    height: auto;
    color: white;
-   background-color: lightgray;
    border-style: inset; 
    text-align: center;
    font-size: 20px;
@@ -41,5 +41,5 @@ div.gitDiv
 
 div.btn
 {
-    margin-left: 10%
+    margin: auto;
 }
