@@ -214,66 +214,6 @@
                 </script> 
             </body>
         </div>
-        <!---Humidity Chart--->
-        <div class="container-fluid">
-            <canvas id="brewHumidityChart"></canvas>
-            <body>
-                <script>
-                    var chx = document.getElementById("brewHumidityChart").getContext("2d");
-                    var baseURL = "http://pidataspro.ddns.net:8056/";
-                    chx.fillStyle = "white"
-                    function drawRealHumidityChart() {
-                        $.getJSON(baseURL.concat("shot_data"), function(results){
-                            var label3 = [], humidity=[];
-                            $.each(results, function(i, field){
-                                labels.push(field.timestamp);
-                                humidity.push(field.ambientHumidity);
-                            });
-
-                            var humidityData = {
-                                labels: label3,
-                                xAxisID: "Time",
-                                yAxisID: "Humidity",
-                                datasets : [{
-                                    label: 'Humidity',
-                                    backgroundColor: "rgba(153,255,51,0.4)",
-                                    data: humidity,
-                                    radius: 2,
-                                    fill: false
-                                }]
-                            };
-
-
-                            var brewHumidityChart = new Chart(chx, {
-                                type: 'line',
-                                data: humidityData,
-                                options:{
-                                    animation:{
-                                        duration: 0
-                                    },
-                                    title: {
-                                        fontSize: 20,
-                                        display: true,
-                                        text: "Humidity"},
-
-                                    scales: {
-                                        yAxes: [{
-                                            ticks: {
-                                                stepSize: 1
-                                            }
-                                        }]
-
-                                    }
-
-
-                                }
-                            });
-                        });
-                    }
-                    drawRealHumidityChart();
-                </script> 
-            </body>
-        </div>
         <script>
             //setInterval(function(){
             //    drawRealPressureChart();
