@@ -48,18 +48,21 @@
                 
             function getData() {
                 var baseURL = "http://pidataspro.ddns.net:8056/";
+                var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
+                var all = [];
                 $.getJSON(baseURL.concat("getLastNormal"), function(results){
                     
-                    var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
+                    
                     $.each(results, function(i, field){
                         ambientTemp.push(field.ambientTemp);
                         boilerTemp.push(field.boilerTemp);
                         ambientHumidity.push(field.ambientHumidity);
                     });
-                    var all = [ambientTemp[0],ambientTemp[0],ambientTemp[0]];
+                    all = [ambientTemp[0],ambientTemp[0],ambientTemp[0]];
                     
-                    return all;
+                    
             });
+                return all;
             }
             function drawChart() {
                 
