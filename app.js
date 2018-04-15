@@ -32,7 +32,7 @@ connection.query('SELECT * FROM normal_data', function (error, rows){
 })
 
 app.get('/getLastNormal', function(req,res){
-connection.query('select boilerTemp,ambientTemp,ambientHumidity,max(id) from normal_data;', function (error, rows){
+connection.query('SELECT * FROM normal_data ORDER BY id DESC limit 0,1;', function (error, rows){
 	if(error) throw error;
 	res.json(rows);
 
