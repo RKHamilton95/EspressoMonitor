@@ -46,51 +46,48 @@
 
             function drawChart() {
                 var baseURL = "http://pidataspro.ddns.net:8056/";
-                $.getJSON(baseURL.concat("getLastNormal"), function(results)){
+                $.getJSON(baseURL.concat("shot_data"), function(results){
+                    var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
+                    $.each(results, function(i, field){
+                        ambientTemp.push(field.ambientTemp);
+                        boilerTemp.push(field.boilerTemp);
+                        ambientHumidity.push(feild.ambientHumidity);
+                    });
 
-                //var obj = jQuery.parseJSON(results);
-                //alert(obj.boilerTemp);
+                    var data = google.visualization.arrayToDataTable([
+                        ['Label', 'Value'],
+                        ['Boiler Temp', 8],
+                        ['Weight', 10],
+                        ['Pressure', 20]
+                    ]);
 
-                var boilerTemp,ambientTemp,humidity;
+                    var options = {
+                        width: 700, height: 300,
+                        redFrom: 90, redTo: 100,
+                        yellowFrom:75, yellowTo: 90,
+                        minorTicks: 5
+                    };
 
-                boilerTemp = JSON.parse(results.boilerTemp);
-                ambientTemp = JSON.parse(results.ambientTemp);
-                humidity = JSON.parse(results.ambientHumidity);
-            }
-            var data = google.visualization.arrayToDataTable([
-                ['Label', 'Value'],
-                ['Boiler Temp', 8],
-                ['Weight', 10],
-                ['Pressure', 20]
-            ]);
+                    var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
 
-            var options = {
-                width: 700, height: 300,
-                redFrom: 90, redTo: 100,
-                yellowFrom:75, yellowTo: 90,
-                minorTicks: 5
-            };
+                    chart.draw(data, options);
 
-            var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+                    setInterval(function() {
+                        data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+                        chart.draw(data, options);
+                    }, 2000);
+                    setInterval(function() {
+                        data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+                        chart.draw(data, options);
+                    }, 2000);
+                    setInterval(function() {
+                        data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+                        chart.draw(data, options);
+                    }, 2000);
 
-            chart.draw(data, options);
+                    drawChart();
 
-            setInterval(function() {
-                data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-                chart.draw(data, options);
-            }, 2000);
-            setInterval(function() {
-                data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-                chart.draw(data, options);
-            }, 2000);
-            setInterval(function() {
-                data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-                chart.draw(data, options);
-            }, 2000);
-
-            drawChart();
-
-            }
+                }
         </script>
         <body>
             <div id="chart_div" style="width: 700px; height: 300px;"></div>
