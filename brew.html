@@ -72,7 +72,7 @@
                         boilerTemp.push(field.boilerTemp);
                         ambientHumidity.push(field.ambientHumidity);
                     });
-                      all = [ambientTemp[0],boilerTemp[0],ambientHumidity[0]]; 
+                      all = [boilerTemp[0],ambientTemp[0],ambientHumidity[0]]; 
                     var data = google.visualization.arrayToDataTable([
                         ['Label', 'Value'],
                         ['Boiler Temp', all[0]],
