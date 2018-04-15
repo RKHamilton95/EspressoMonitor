@@ -44,13 +44,13 @@
             google.charts.load('current', {'packages':['gauge']});
             google.charts.setOnLoadCallback(drawChart);
 
-            
-                
+
+
             function getData() {
                 var baseURL = "http://pidataspro.ddns.net:8056/";
                 var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
                 var all = [];
-                
+
                 $.getJSON(baseURL.concat("getLastNormal"), function(results){
                     $.each(results, function(i, field){
                         ambientTemp.push(field.ambientTemp);
@@ -64,53 +64,80 @@
             }
             function drawChart() {
                 setInterval(function() {
-                   $.getJSON(baseURL.concat("getLastNormal"), function(results){
-                       var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
-                var all = [];
-                    $.each(results, function(i, field){
-                        ambientTemp.push(field.ambientTemp);
-                        boilerTemp.push(field.boilerTemp);
-                        ambientHumidity.push(field.ambientHumidity);
+                    $.getJSON(baseURL.concat("getLastNormal"), function(results){
+                        var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
+                        var all = [];
+                        $.each(results, function(i, field){
+                            ambientTemp.push(field.ambientTemp);
+                            boilerTemp.push(field.boilerTemp);
+                            ambientHumidity.push(field.ambientHumidity);
+                        });
+                        //Returns all of the values
+                        all = [boilerTemp[0],ambientTemp[0],ambientHumidity[0]]; 
+
+                        var dataBoilerTemp = google.visualization.arrayToDataTable([
+                            ['Label', 'Value'],
+                            ['Boiler Temp', all[0]]
+                        ]);
+
+                        var dataAmbientTemp = google.visualization.arrayToDataTable([
+                            ['Label', 'Value'],
+                            ['Room Temp', all[1]]
+                        ]);
+
+                        var dataHumidity = google.visualization.arrayToDataTable([
+                            ['Label', 'Value'],
+                            ['Humidity', all[2]]
+                        ]);
+
+                        var boilerTempOptions = {
+                            width: 700, height: 300,
+                            redFrom: 250, redTo: 300,
+                            yellowFrom: 150, yellowTo: 250,
+                            minorTicks: 10
+                        };
+
+                        var ambientTempOptions = {
+                            width: 700, height: 300,
+                            redFrom: 90, redTo: 120,
+                            yellowFrom:60, yellowTo: 90,
+                            minorTicks: 5
+                        };
+
+                        var humidityOptions = {
+                            width: 700, height: 300,
+                            redFrom: 14, redTo: 20,
+                            yellowFrom: 8, yellowTo: 14,
+                            minorTicks: 1
+                        };
+
+                        var chartBoilerTemp = new google.visualization.Gauge(document.getElementById('chartBoilerTemp'));
+                        var chartAmbientTemp = new google.visualization.Gauge(document.getElementById('chartAmbientTemp'));
+                        var chartHumidity = new google.visualization.Gauge(document.getElementById('chartHumidity'));
+
+                        // chartTemp.draw(data1, options);
+
+                        setInterval(function() {
+                            data.setValue(0, 1, boilerTemp[0]);
+                            chart.draw(dataBoilerTemp, boilerTempOptions);
+                        }, 2000);
+                        setInterval(function() {
+                            data.setValue(1, 1, ambientTemp[0]);
+                            chart.draw(dataAmbientTemp, ambientTempOptions);
+                        }, 1000);
+                        setInterval(function() {
+                            data.setValue(2, 1, ambientHumidity[0]);
+                            chart.draw(dataHumidity, humidityOptions);
+                        }, 1000);
+
                     });
-                      all = [boilerTemp[0],ambientTemp[0],ambientHumidity[0]]; 
-                    var data = google.visualization.arrayToDataTable([
-                        ['Label', 'Value'],
-                        ['Boiler Temp', all[0]],
-                        ['Room Temp', all[1]],
-                        ['Humidity', all[2]]
-                    ]);
-
-                    var options = {
-                        width: 700, height: 300,
-                        redFrom: 90, redTo: 100,
-                        yellowFrom:75, yellowTo: 90,
-                        minorTicks: 5
-                    };
-
-                    var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
-
-                    chart.draw(data, options);
-/*
-                    setInterval(function() {
-                        //drawChart();
-                        data.setValue(0, 1, boilerTemp[0]);
-                        chart.draw(data, options);
-                    }, 2000);
-                    setInterval(function() {
-                        //data.setValue(1, 1, ambientTemp[0]);
-                        ///chart.draw(data, options);
-                    }, 1000);
-                    setInterval(function() {
-                    //    data.setValue(2, 1, ambientHumidity[0]);
-                    //    chart.draw(data, options);
-                    }, 1000);
-                    */
-                });
                 }, 1000);
-                }
+            }
         </script>
         <body>
-            <div id="chart_div" style="width: 700px; height: 300px;"></div>
+            <div id="chartBoilerTemp" style="width: 700px; height: 300px;"></div>
+            <div id="chartAmbientTemp" style="width: 700px; height: 300px;"></div>
+            <div id="chartHumidity" style="width: 700px; height: 300px;"></div>
         </body>
 
         <!---Temp Chart--->
