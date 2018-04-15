@@ -49,9 +49,12 @@
                 $.getJSON(baseURL.concat("getLastNormal"), function(results){
                     var boilerTemp,ambientTemp,humidity;
                     $.each(results, function(i, field){
+
                         boilerTemp = field.boilerTemp;
                         ambientTemp = field.ambientTemp;
                         humidity = field.ambientHumidity;
+
+
                     });
                     
                     var data = google.visualization.arrayToDataTable([
