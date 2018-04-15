@@ -31,6 +31,17 @@ connection.query('SELECT * FROM normal_data', function (error, rows){
 });
 })
 
+app.get('/getBoilerTemp', function(req,res){
+connection.query('select boilerTemp,max(id) from normal_data;', function (error, rows){
+	if(error) throw error;
+	res.json(rows[0]);
+
+});
+})
+
+
+
+
 app.get('/on', function (req, res) {
   PythonShell.run('../pythonMysqlScripts/sendData.py', {args: ['1']},function (err, results) {
   if (err) throw err;
