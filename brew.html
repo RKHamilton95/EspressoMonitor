@@ -56,10 +56,8 @@
                         boilerTemp.push(field.boilerTemp);
                         ambientHumidity.push(field.ambientHumidity);
                     });
-                    var all = [];
-                    all[0] = ambientTemp[0];
-                    all[1] = boilerTemp[0];
-                    all[2] = ambientHumidity[0];
+                    var all = [ambientTemp[0],ambientTemp[0],ambientTemp[0]];
+                    
                     return all;
             });
             }
