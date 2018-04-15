@@ -45,14 +45,14 @@
             google.charts.setOnLoadCallback(drawChart);
 
             function drawChart() {
-                var baseURL = "http://pidataspro.ddns.net:8056/";
+                /*var baseURL = "http://pidataspro.ddns.net:8056/";
                 $.getJSON(baseURL.concat("getBoilerTemp"), function(results){
                     var labels = [], boilerTemp,weight,pressure;
                     $.each(results, function(i, field){
                         boilerTemp.push(field.boilerTemp);
                         //weight.push(field.weight);
                         //pressure.push(field.pressure);
-                    });
+                    });*/
                     
                     var data = google.visualization.arrayToDataTable([
                         ['Label', 'Value'],
