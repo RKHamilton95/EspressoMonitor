@@ -63,8 +63,8 @@
                           var data = google.visualization.arrayToDataTable([
                           ['Label', 'Value'],
                           ['Boiler Temp', 8],
-                          ['Weight', 10],
-                          ['Pressure', 20]
+                          //['Weight', 10],
+                          //['Pressure', 20]
                           ]);
 
                 var options = {
@@ -82,7 +82,7 @@
                     data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
                     chart.draw(data, options);
                 }, 2000);
-                setInterval(function() {
+                /*setInterval(function() {
                     data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
                     chart.draw(data, options);
                 }, 2000);
@@ -90,7 +90,7 @@
                     data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
                     chart.draw(data, options);
                 }, 2000);
-            }
+            }*/
             drawChart();
             }
         </script>
