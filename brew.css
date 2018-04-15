@@ -1,4 +1,4 @@
 div.brewShot
 {
-    float: left;
+    display: inline;
 }
