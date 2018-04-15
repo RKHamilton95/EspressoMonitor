@@ -47,7 +47,12 @@
             function drawChart() {
                 var baseURL = "http://pidataspro.ddns.net:8056/";
                 $.getJSON(baseURL.concat("getLastNormal"), function(results){
+
+                var obj = jQuery.parseJSON( result);
+                    alert( obj.boilerTemp );
+
                     var boilerTemp,ambientTemp,humidity;
+
                     $.each(results, function(i, field){
 
                         boilerTemp = field.boilerTemp;
