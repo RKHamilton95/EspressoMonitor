@@ -94,21 +94,21 @@
                             width: 300, height: 150,
                             redFrom: 250, redTo: 300,
                             yellowFrom: 150, yellowTo: 250,
-                            minorTicks: 10
+                            minorTicks: 10, max: 300
                         };
 
                         var ambientTempOptions = {
                             width: 300, height: 150,
                             redFrom: 90, redTo: 120,
                             yellowFrom:60, yellowTo: 90,
-                            minorTicks: 5
+                            minorTicks: 5, max: 120
                         };
 
                         var humidityOptions = {
                             width: 300, height: 150,
                             redFrom: 14, redTo: 20,
                             yellowFrom: 8, yellowTo: 14,
-                            minorTicks: 1
+                            minorTicks: 1, max: 20
                         };
 
                         var chartBoilerTemp = new google.visualization.Gauge(document.getElementById('chartBoilerTemp'));
