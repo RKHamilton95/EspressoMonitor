@@ -103,18 +103,24 @@
                         chartAmbientTemp.draw(dataAmbientTemp,ambientTempOptions);
                         chartHumidity.draw(dataHumidity,humidityOptions);
 
-                        setInterval(function() {
-                            dataBoilerTemp.setValue(0, 1, boilerTemp[0]);
+                        dataBoilerTemp.setValue(0, 1, boilerTemp[0]);
                             chartBoilerTemp.draw(dataBoilerTemp, boilerTempOptions);
-                        }, 2000);
-                        setInterval(function() {
-                            dataAmbientTemp.setValue(1, 1, ambientTemp[0]);
+                        
+                         dataAmbientTemp.setValue(1, 1, ambientTemp[0]);
                             chartAmbientTemp.draw(dataAmbientTemp, ambientTempOptions);
-                        }, 1000);
-                        setInterval(function() {
-                            dataHumidity.setValue(2, 1, ambientHumidity[0]);
+                        
+                         dataHumidity.setValue(2, 1, ambientHumidity[0]);
                             chartHumidity.draw(dataHumidity, humidityOptions);
-                        }, 1000);
+                        
+                        //setInterval(function() {
+                            
+                        //}, 2000);
+                    //    setInterval(function() {
+                           
+                      //  }, 1000);
+                     //   setInterval(function() {
+                    //     
+                    //    }, 1000);
 
                     });
                 }, 1000);
