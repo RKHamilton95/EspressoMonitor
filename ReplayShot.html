@@ -58,7 +58,7 @@
         <script>
         
         $('#form').submit(function(e) {
-                    var fields = $('#form').serializeArray();
+                    var fields = $(this).serializeArray();
                 console.log(fields);
                     drawAll(fields.shotID);
                 });    
