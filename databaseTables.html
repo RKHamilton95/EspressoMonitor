@@ -40,32 +40,67 @@
             </div>
         </nav>
     </body>
-<body>
+    <body>
 
-    <h2 class="container-fluid" style="color:white;">Database Tables</h2>
+        <h2 class="container-fluid" style="color:white;">Database Tables</h2>
 
-    <select style="margin-left: 4%" id="myselect" onchange="setSelection(this.value)">
-        <option value="">Choose an option:</option>
-        <option value="normal_data">Normal Data</option>
-        <option value="shot_data">Shot Data</option>
-        <option value="bean_data">Bean Data</option>
-    </select>
-    <div id="table"></div>
-    <script>
-        function setSelection(sel) {
+        <select style="margin-left: 4%" id="myselect" onchange="setSelection(this.value)">
+            <option value="">Choose an option:</option>
+            <option value="normal_data">Normal Data</option>
+            <option value="shot_data">Shot Data</option>
+            <option value="bean_data">Bean Data</option>
+        </select>
+        <div id="table"></div>
+        <script>
+            function setSelection(sel) {
 
-            var tableDiv = document.getElementById("table"); 
-            var table = document.createElement('TABLE');
-            var tbody= document.createElement('TBODY');  
-            var tr = document.createElement('TR');
+                var tableDiv = document.getElementById("table"); 
+                var table = document.createElement('TABLE');
+                var tbody= document.createElement('TBODY');  
+                var tr = document.createElement('TR');
 
-            table.appendChild(tbody);
+                table.appendChild(tbody);
 
-            //create header
-            tbody.appendChild(tr);
+                //create header
+                tbody.appendChild(tr);
 
+                case normal_data:
+                var timeStampTbl = [], boilerTempTbl = [], ambientTempTbl = [],ambientHumidityTbl = [];
+                var tblHeading = ["TimeStamp","Boiler Temp","Ambient Temp","Humidity"];
+                $.getJSON(baseURL.concat(JSON.parse((sel)), function(results){
+                    $.each(results, function(i, field){
+                        ambientTempTbl.push(field.ambientTemp);
+                        boilerTempTbl.push(field.boilerTemp);
+                        ambientHumidityTbl.push(field.ambientHumidity);
+                    });
+                });
+                          for(var col=0; col<tblHeading.length; col++)
+                {
+                    var th = document.createElement('TH');
+                    th.width = '75';
+                    th.appendChild(document.createTextNode(tblHeading[col]));
+                    tr.appendChild(th);
+                }
+                for (var f=0; f<timeStamp.length; f++)
+                {
+                    var tr = document.createElement('TR'); 
+                    var time = document.createElement('TD');
+                    var boilTemp = document.createElement('TD');
+                    var ambTemp = document.createElement('TD');
+                    var humid = document.createElement('TD');
+                    time.appendChild(document.createTextNode(timeStampTbl[f]));
+                    boilTemp.appendChild(document.createTextNode(boilerTempTbl[f]));
+                    ambTemp.appendChild(document.createTextNode(ambientTempTbl[f])); 
+                    humid.appendChild(document.createTextNode(ambientHumidityTbl[f]));                     
+                    tr.appendChild(time);
+                    tr.appendChild(boilTemp);
+                    tr.appendChild(ambTemp);
+                    tr.appendChild(humid);
+                    tbody.appendChild(tr);
+                }
 
-                switch("normal_data")
+                tableDiv.appendChild(table);
+                /*switch(JSON.parse((sel))
                        {
                        case normal_data:
                        var timeStampTbl = [], boilerTempTbl = [], ambientTempTbl = [],ambientHumidityTbl = [];
@@ -110,10 +145,10 @@
                 case bean_data:
                 break;
             }
-        });
-        }
-    </script>
+        });*/
+            }
+        </script>
 
-</body>
+    </body>
 
 </html>
