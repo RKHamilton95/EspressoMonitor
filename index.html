@@ -87,7 +87,8 @@
                                 var s = date.getSeconds();
                                 m = checkTime(m);
                                 s = checkTime(s);
-                                label1.push(h + ":" + m + ":" + s);
+                                var n = date.toLocaleTimeString();
+                                label1.push(n);
                                 boilerTemp.push(field.boilerTemp);
                             });
                             var tempData = {
