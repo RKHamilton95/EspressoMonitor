@@ -207,7 +207,7 @@
             
                     function drawAll() {
                         setInterval(function() {
-                        $.getJSON("http://pidataspro.ddns.net:8056/getNormal60"), function(results){
+                        $.getJSON(("http://pidataspro.ddns.net:8056/getNormal60"), function(results){
                             var label1 = [],label2 = [],label3 = [], boilerTemp=[],roomTemp=[],humData=[];;
                             
                             $.each(results, function(i, field){
@@ -298,8 +298,7 @@
 
                                     }
                                 }
-                           
-                            
+                            });
                             
                             
                             var tempData3 = {
@@ -336,8 +335,7 @@
 
                                     }
                                 }
-                            
-                            
+                            });
                             
                             
                             
