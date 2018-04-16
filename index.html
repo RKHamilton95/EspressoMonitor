@@ -63,13 +63,18 @@
                     var ctx = document.getElementById("brewTempChart").getContext("2d");
                     var baseURL = "http://pidataspro.ddns.net:8056/";
                     ctx.fillStyle = "white"
+                    const monthNames = ["January", "February", "March", "April", "May", "June",
+                      "July", "August", "September", "October", "November", "December"
+                    ];
 
                     function drawRealTempChart() {
                         setInterval(function() {
                         $.getJSON(baseURL.concat("getNormal60"), function(results){
                             var label1 = [], boilerTemp=[],roomTemp=[];
+                            
                             $.each(results, function(i, field){
-                                label1.push(field.timeStamp);
+                                let date = new Date(field.timeStamp)
+                                label1.push(date.getDay());
                                 boilerTemp.push(field.boilerTemp);
                             });
                             var tempData = {
