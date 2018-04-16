@@ -264,7 +264,7 @@
                                 label1.push(n);
                                 boilerTemp.push(field.ambientTemp);
                             });
-                            var tempData = {
+                            var tempData2 = {
                                 labels: label1,
                                 xAxisID: "Time",
                                 yAxisID: "Temperature in F",
@@ -277,9 +277,9 @@
                                     //showLine: false
                                 }]
                             };
-                            var brewTempChart = new Chart(ctx, {
+                            var tempChart = new Chart(ctx, {
                                 type: 'line',
-                                data: tempData,
+                                data: tempData2,
                                 options:{
                                     animation:{
                                         duration: 0
