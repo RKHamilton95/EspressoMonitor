@@ -63,30 +63,13 @@
                     var ctx = document.getElementById("brewTempChart").getContext("2d");
                     var baseURL = "http://pidataspro.ddns.net:8056/";
                     ctx.fillStyle = "white"
-                    const monthNames = ["January", "February", "March", "April", "May", "June",
-                      "July", "August", "September", "October", "November", "December"
-                    ];
-                    
-                    function checkTime(i) {
-                      if (i < 10) {
-                        i = "0" + i;
-                      }
-                      return i;
-                    }
-
                     function drawRealTempChart() {
-                        
                         setInterval(function() {
                         $.getJSON(baseURL.concat("getNormal60"), function(results){
                             var label1 = [], boilerTemp=[],roomTemp=[];
                             
                             $.each(results, function(i, field){
                                 var date = new Date(field.timeStamp);
-                                var h = date.getHours();
-                                var m = date.getMinutes();
-                                var s = date.getSeconds();
-                                m = checkTime(m);
-                                s = checkTime(s);
                                 var n = date.toLocaleTimeString();
                                 label1.push(n);
                                 boilerTemp.push(field.boilerTemp);
@@ -97,10 +80,10 @@
                                 yAxisID: "Temperature in F",
                                 datasets : [{
                                     label: 'Boiler Temperature',
-                                    backgroundColor: "rgba(153,255,51,0.4)",
+                                    backgroundColor: "white",//"rgba(153,255,51,0.4)",
                                     data: boilerTemp,
                                     radius: 2,
-                                    fill: false
+                                    fill: true
                                 }]
                             };
                             var brewTempChart = new Chart(ctx, {
@@ -129,8 +112,6 @@
                             }, 1000);
                     }
                     drawRealTempChart();
-                    
-                    
                 </script> 
             
               
