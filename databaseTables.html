@@ -44,18 +44,21 @@
 
         <h2 class="container-fluid" style="color:white;">Database Tables</h2>
 
-        <select style="margin-left: 4%" id="myselect" onchange="setSelection(this.value)">
+        <select style="margin-left: 4%" id="myselect" >
             <option value="">Choose an option:</option>
             <option value="normal_data">Normal Data</option>
             <option value="shot_data">Shot Data</option>
             <option value="bean_data">Bean Data</option>
         </select>
         <div id="table2"></div>
+        
+         setSelection();
+        
         <script>
            // setSelection();
 $(document).ready(function(){
-            function setSelection(sel) {
-                
+            function setSelection() {
+                //onchange="setSelection(this.value)"
                 var baseURL = "http://pidataspro.ddns.net:8056/";
                 var tableDiv = document.getElementById("table2"); 
                 var table = document.createElement('TABLE');
