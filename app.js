@@ -18,8 +18,23 @@ connection.connect();
 
 
 app.get('/shot_data', function(req,res){
-    console.log(req)
-    connection.query('SELECT * FROM shot_data', function (error, rows){
+    connection.query('SELECT * FROM shot_data WHERE id IS NULL', function (error, rows){
+        if(error) throw error;
+        res.json(rows);
+    });
+})
+
+app.get('/shot_data/:id', function(req,res){
+    var id = req.params.id;
+    connection.query('SELECT * FROM shot_data WHERE id =?',[id], function (error, rows){
+        if(error) throw error;
+        res.json(rows);
+    });
+})
+
+
+app.get('/boiler_fill', function(req,res){
+    connection.query('SELECT * FROM boiler_fill_data', function (error, rows){
         if(error) throw error;
         res.json(rows);
     });
