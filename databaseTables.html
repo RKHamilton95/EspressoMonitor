@@ -74,7 +74,7 @@
                         boilerTempTbl.push(field.boilerTemp);
                         ambientHumidityTbl.push(field.ambientHumidity);
                     });
-                });
+                
                 
                 for(var col=0; col<tblHeading.length; col++)
                 {
@@ -103,6 +103,7 @@
                 }
 
                 tableDiv.appendChild(table);
+            });
                 /*switch(JSON.parse((sel))
                        {
                        var tableDiv = document.getElementById("table"); 
