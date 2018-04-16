@@ -40,40 +40,90 @@
             </div>
         </nav>
     </body>
-    <body>
+    <table>
+        <th><td>Dogs</td></th>
+    <tr><td>White</td></tr>
+    <th><td>Cats</td></th>
+<tr><td></td></tr>
+</table>
+<body>
 
-        <h2 class="container-fluid" style="color:white;">Database Tables</h2>
+    <h2 class="container-fluid" style="color:white;">Database Tables</h2>
 
-        <select style="margin-left: 4%" id="myselect" onchange="change_myselect(this.value)">
-            <option value="">Choose an option:</option>
-            <option value="normal_data">Normal Data</option>
-            <option value="shot_data">Shot Data</option>
-            <option value="bean_data">Bean Data</option>
-        </select>
-        <p id="table"></p>
-        <script>
-            function change_myselect(sel) {
-                var obj, dbParam, xmlhttp, myObj, x, txt = "";
-                obj = { "table":sel, "limit":100 };
-                dbParam = JSON.stringify(obj);
-                xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        myObj = JSON.parse(this.responseText);
-                        txt += "<table class="table-dark" border='1'>"
-                        for (x in myObj) {
-                            txt += "<tr><td>" + myObj[x].name + "</td></tr>";
+    <select style="margin-left: 4%" id="myselect" onchange="setSelection(this.value)">
+        <option value="">Choose an option:</option>
+        <option value="normal_data">Normal Data</option>
+        <option value="shot_data">Shot Data</option>
+        <option value="bean_data">Bean Data</option>
+    </select>
+    <div id="table"></div>
+    <script>
+        function setSelection(sel) {
+
+            var tableDiv = document.getElementById("table"); 
+            var table = document.createElement('TABLE');
+            var tbody= document.createElement('TBODY');  
+            var tr = document.createElement('TR');
+
+            table.appendChild(tbody);
+
+            //create header
+            tbody.appendChild(tr);
+
+
+
+            $.getJSON(baseURL.concat(JSON.parse((sel)), function(results){
+
+                switch(JSON.parse((sel))
+                       {
+                       case normal_data:
+                       var timeStampTbl = [], boilerTempTbl = [], ambientTempTbl = [],ambientHumidityTbl = [];
+                       var tblHeading = ["TimeStamp","Boiler Temp","Ambient Temp","Humidity"];
+                       
+                       $.each(results, function(i, field){
+                            ambientTempTbl.push(field.ambientTemp);
+                            boilerTempTbl.push(field.boilerTemp);
+                            ambientHumidityTbl.push(field.ambientHumidity);
+                        });
+                
+                       for(var col=0; col<tblHeading.length; col++)
+                        {
+                        var th = document.createElement('TH');
+                        th.width = '75';
+                        th.appendChild(document.createTextNode(tblHeading[col]));
+                        tr.appendChild(th);
                         }
-                        txt += "</table>"        
-                        document.getElementById("table").innerHTML = txt;
-                    }
-                };
-                xmlhttp.open("POST", "json_demo_db_post.php", true);
-                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xmlhttp.send("x=" + dbParam);
-            }
-        </script>
+                        for (var f=0; f<timeStamp.length; f++)
+                        {
+                            var tr = document.createElement('TR'); 
+                            var time = document.createElement('TD');
+                            var boilTemp = document.createElement('TD');
+                            var ambTemp = document.createElement('TD');
+                            var humid = document.createElement('TD');
+                            time.appendChild(document.createTextNode(timeStampTbl[f]));
+                            boilTemp.appendChild(document.createTextNode(boilerTempTbl[f]));
+                            ambTemp.appendChild(document.createTextNode(ambientTempTbl[f])); 
+                            humid.appendChild(document.createTextNode(ambientHumidityTbl[f]));                     
+                            tr.appendChild(time);
+                            tr.appendChild(boilTemp);
+                            tr.appendChild(ambTemp);
+                            tr.appendChild(humid);
+                            tbody.appendChild(tr);
+                        }
 
-    </body>
+                        tableDiv.appendChild(table);
+                break;
+                case shot_data:
+                var timeStampTbl = [], boilerTempTbl = [], pressureTbl = [];
+                break;
+                case bean_data:
+                break;
+            }
+        });
+        });
+        }
+    </script>
+
+</body>
 
 </html>
