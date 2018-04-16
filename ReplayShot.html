@@ -38,6 +38,7 @@
             </div>
         </nav>
         <input name = "in" type="text"/>
+        <button name ="ref"/>
         <form id ="formTest">
             <p class="shotText container-fluid"><b>Enter a shot ID:</b></p>
             <input class="container-fluid" type="text" name="shotID">
@@ -57,10 +58,12 @@
         
         <script>
         
-        $('#formTest').submit(function(e) {
-       drawAll(document.getElementById('in').value)
-                });    
-            
+       $("#ref").click(function(e) {
+                    e.preventDefault();
+               drawAll(document.getElementById('in').value)
+                });
+        
+             
             
         var ctx = document.getElementById("brewTempChart").getContext("2d");
             var ctx2 = document.getElementById("tempChart").getContext("2d");
