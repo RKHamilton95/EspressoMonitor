@@ -198,18 +198,32 @@
             
                          
                     var ctx = document.getElementById("brewTempChart").getContext("2d");
-                    var baseURL = "http://pidataspro.ddns.net:8056/";
+                    var ctx2 = document.getElementById("tempChart").getContext("2d");
+                    var ctx3 = document.getElementById("humChart").getContext("2d");
+    
                     ctx.fillStyle = "white"
-                    function drawRealTempChart() {
+                    ctx2.fillStyle = "white"
+                    ctx3.fillStyle = "white"
+            
+                    function drawAll() {
                         setInterval(function() {
-                        $.getJSON(baseURL.concat("getNormal60"), function(results){
-                            var label1 = [], boilerTemp=[],roomTemp=[];
+                        $.getJSON("http://pidataspro.ddns.net:8056/getNormal60"), function(results){
+                            var label1 = [],label2 = [],label3 = [], boilerTemp=[],roomTemp=[],humData=[];;
                             
                             $.each(results, function(i, field){
                                 var date = new Date(field.timeStamp);
                                 var n = date.toLocaleTimeString();
                                 label1.push(n);
                                 boilerTemp.push(field.boilerTemp);
+                                
+                                var n2 = date.toLocaleTimeString();
+                                label2.push(n);
+                                roomTemp.push(field.ambientTemp);
+                                
+                                var n3 = date.toLocaleTimeString();
+                                label3.push(n);
+                                humData.push(field.ambientHumidity);
+                                
                             });
                             var tempData = {
                                 labels: label1,
@@ -246,19 +260,101 @@
                                     }
                                 }
                             });
+                            
+                            
+                            
+                            
+                            var tempData2 = {
+                                labels: label2,
+                                xAxisID: "Time",
+                                yAxisID: "Temperature in F",
+                                datasets : [{
+                                    label: 'Ambient Temperature',
+                                    backgroundColor: "rgba(255,153,0,0.4)",
+                                    data: roomTemp,
+                                    radius: 2,
+                                    fill: true
+                                    //showLine: false
+                                }]
+                            };
+                            var tempChart = new Chart(ctx2, {
+                                type: 'line',
+                                data: tempData2,
+                                options:{
+                                    animation:{
+                                        duration: 0
+                                    },
+                                    title: {
+                                        fontSize: 20,
+                                        display: true,
+                                        text: "Ambient Temperature"},
+
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                stepSize: 20
+                                            }
+                                        }]
+
+                                    }
+                                }
+                            });
+                            
+                            
+                            
+                            var tempData3 = {
+                                labels: label3,
+                                xAxisID: "Time",
+                                yAxisID: "Humidity",
+                                datasets : [{
+                                    label: 'Ambient Humidity',
+                                    backgroundColor: "rgba(192,192,192,0.4)",
+                                    data: humData,
+                                    radius: 2,
+                                    fill: true
+                                    //showLine: false
+                                }]
+                            };
+                            var tempChart3 = new Chart(ctx3, {
+                                type: 'line',
+                                data: tempData3,
+                                options:{
+                                    animation:{
+                                        duration: 0
+                                    },
+                                    title: {
+                                        fontSize: 20,
+                                        display: true,
+                                        text: "Ambient Humidity"},
+
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                stepSize: 20
+                                            }
+                                        }]
+
+                                    }
+                                }
+                            });
+                            
+                            
+                            
+                            
+                            
                         });
                             }, 1000);
                     }
-                    drawRealTempChart();
+                    drawAll();
                 
             
             
             
             
             
-            var ctx2 = document.getElementById("tempChart").getContext("2d");
-                    var baseURL = "http://pidataspro.ddns.net:8056/";
-                    ctx2.fillStyle = "white"
+            
+                    //var baseURL = "http://pidataspro.ddns.net:8056/";
+                   // ctx2.fillStyle = "white"
                     function drawTempChart() {
                         setInterval(function() {
                         $.getJSON(baseURL.concat("getNormal60"), function(results){
@@ -305,14 +401,23 @@
                                     }
                                 }
                             });
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                         });
                             }, 1000);
                     }
-                    drawTempChart();
+                   // drawTempChart();
                 
-            var ctx3 = document.getElementById("humChart").getContext("2d");
-                    var baseURL = "http://pidataspro.ddns.net:8056/";
-                    ctx3.fillStyle = "white"
+            
+                   // var baseURL = "http://pidataspro.ddns.net:8056/";
+                    //ctx3.fillStyle = "white"
                     function drawHumChart() {
                         setInterval(function() {
                         $.getJSON(baseURL.concat("getNormal60"), function(results){
@@ -362,7 +467,7 @@
                         });
                             }, 1000);
                     }
-                    drawHumChart();
+                //    drawHumChart();
                 
             
             
