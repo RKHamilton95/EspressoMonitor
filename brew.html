@@ -41,7 +41,8 @@
         </nav>
 
         <!--- Gauges ----->
-        <script type="text/javascript">
+        <script>
+            /*
             google.charts.load('current', {'packages':['gauge']});
             google.charts.setOnLoadCallback(drawChart);
 
@@ -115,6 +116,7 @@
                     });
                 }, 1000);
             }
+            */
         </script>
         
         <body class="container-fluid">
@@ -127,6 +129,7 @@
             <canvas id="brewTempChart"></canvas>
             <body>
                 <script>
+                    /*
                     var ctx = document.getElementById("brewTempChart").getContext("2d");
                     var baseURL = "http://pidataspro.ddns.net:8056/";
                     ctx.fillStyle = "white"
@@ -242,27 +245,222 @@
                         });
                     }
                     drawRealPressureChart();
+                    */
                 </script> 
+                
             </body>
         </div>
-        <script>
-            //setInterval(function(){
-            //    drawRealPressureChart();
-            //    drawRealTempChart();
-            //}, 1000);    
+
+        
+        
         </script>
+        <!--- Gauges ----->
+        <script type="text/javascript">
+            google.charts.load('current', {
+                'packages': ['gauge']
+            });
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                setInterval(function() {
+                    $.getJSON(("http://pidataspro.ddns.net:8056/getLastNormal"), function(results) {
+                        var boilerTemp, ambientTemp, ambientHumidity;
+                        $.each(results, function(i, field) {
+                            boilerTemp = field.boilerTemp
+                            ambientTemp = field.ambientTemp;
+                            ambientHumidity = field.ambientHumidity
+                        });
+                        var dataBoilerTemp = google.visualization.arrayToDataTable([
+                            ['Label', 'Value'],
+                            ['Boiler Temp', boilerTemp]
+                        ]);
+                        var dataAmbientTemp = google.visualization.arrayToDataTable([
+                            ['Label', 'Value'],
+                            ['Room Temp', ambientTemp]
+                        ]);
+                        var dataHumidity = google.visualization.arrayToDataTable([
+                            ['Label', 'Value'],
+                            ['Humidity', ambientHumidity]
+                        ]);
+                        var boilerTempOptions = {
+                            redFrom: 250,
+                            redTo: 300,
+                            yellowFrom: 150,
+                            yellowTo: 250,
+                            minorTicks: 10,
+                            max: 300
+                        };
+                        var ambientTempOptions = {
+                            redFrom: 90,
+                            redTo: 120,
+                            yellowFrom: 60,
+                            yellowTo: 90,
+                            minorTicks: 5,
+                            max: 120
+                        };
+                        var humidityOptions = {
+                            redFrom: 14,
+                            redTo: 20,
+                            yellowFrom: 8,
+                            yellowTo: 14,
+                            minorTicks: 1,
+                            max: 20
+                        };
+                        var chartBoilerTemp = new google.visualization.Gauge(document.getElementById('chartBoilerTemp'));
+                        var chartAmbientTemp = new google.visualization.Gauge(document.getElementById('chartAmbientTemp'));
+                        var chartHumidity = new google.visualization.Gauge(document.getElementById('chartHumidity'));
+                        chartBoilerTemp.draw(dataBoilerTemp, boilerTempOptions);
+                        chartAmbientTemp.draw(dataAmbientTemp, ambientTempOptions);
+                        chartHumidity.draw(dataHumidity, humidityOptions);
+                    });
+                }, 1000);
+            }
+
+
+
+            var ctx = document.getElementById("brewTempChart").getContext("2d");
+            var ctx2 = document.getElementById("tempChart").getContext("2d");
+            var ctx3 = document.getElementById("humChart").getContext("2d");
+
+            ctx.fillStyle = "white"
+            ctx2.fillStyle = "white"
+            ctx3.fillStyle = "white"
+
+            drawAll();
+
+            function drawAll() {
+                setInterval(function() {
+                    $.getJSON(("http://pidataspro.ddns.net:8056/getNormal60"), function(results) {
+                        var label = [],
+                            boilerTemp = [],
+                            roomTemp = [],
+                            humData = [];;
+                        $.each(results, function(i, field) {
+                            var date = new Date(field.timeStamp);
+                            var n = date.toLocaleTimeString();
+                            label.push(n);
+                            boilerTemp.push(field.boilerTemp);
+                            roomTemp.push(field.ambientTemp);
+                            humData.push(field.ambientHumidity);
+                        });
+                        var tempData = {
+                            labels: label,
+                            xAxisID: "Time",
+                            yAxisID: "Temperature in F",
+                            datasets: [{
+                                label: 'Boiler Temperature',
+                                backgroundColor: "rgba(153,255,51,0.4)",
+                                data: boilerTemp,
+                                radius: 2,
+                                fill: true
+                            }]
+                        };
+                        var brewTempChart = new Chart(ctx, {
+                            type: 'line',
+                            data: tempData,
+                            options: {
+                                animation: {
+                                    duration: 0
+                                },
+                                title: {
+                                    fontSize: 20,
+                                    display: true,
+                                    text: "Boiler Temperature"
+                                },
+
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            stepSize: 20
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+
+                        var tempData2 = {
+                            labels: label,
+                            xAxisID: "Time",
+                            yAxisID: "Temperature in F",
+                            datasets: [{
+                                label: 'Ambient Temperature',
+                                backgroundColor: "rgba(255,153,0,0.4)",
+                                data: roomTemp,
+                                radius: 2,
+                                fill: true
+                            }]
+                        };
+                        var tempChart = new Chart(ctx2, {
+                            type: 'line',
+                            data: tempData2,
+                            options: {
+                                animation: {
+                                    duration: 0
+                                },
+                                title: {
+                                    fontSize: 20,
+                                    display: true,
+                                    text: "Ambient Temperature"
+                                },
+
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            stepSize: 20
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+
+                        var tempData3 = {
+                            labels: label,
+                            xAxisID: "Time",
+                            yAxisID: "Humidity",
+                            datasets: [{
+                                label: 'Ambient Humidity',
+                                backgroundColor: "rgba(192,192,192,0.4)",
+                                data: humData,
+                                radius: 2,
+                                fill: true
+                            }]
+                        };
+                        var tempChart3 = new Chart(ctx3, {
+                            type: 'line',
+                            data: tempData3,
+                            options: {
+                                animation: {
+                                    duration: 0
+                                },
+                                title: {
+                                    fontSize: 20,
+                                    display: true,
+                                    text: "Ambient Humidity"
+                                },
+
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            stepSize: 20
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+
+                    });
+                }, 1000);
+            }
+
+        </script>
+        
 
 
         <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-        <!-- // <script src="https://github.com/seiyria/bootstrap-slider/tree/master/distbootstrap-slider.min.js"></script> -->
-        <script>
-
-
-
-        </script>
+        
     </body>
 </html>
 
