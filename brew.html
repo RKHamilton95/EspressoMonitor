@@ -75,7 +75,7 @@
 
             function drawChart() {
                 setInterval(function() {
-                    $.getJSON(("http://pidataspro.ddns.net:8056/shot_data"), function(results) {
+                    $.getJSON(("http://pidataspro.ddns.net:8056/getLastNormal"), function(results) {
                         var boilerTemp, ambientTemp, ambientHumidity;
                         $.each(results, function(i, field) {
                             boilerTemp = field.boilerTemp
