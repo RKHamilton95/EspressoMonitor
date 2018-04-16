@@ -146,8 +146,8 @@
                     $.getJSON(("http://pidataspro.ddns.net:8056/shot_data"), function(results) {
                         var label = [],
                             boilerTemp = [],
-                            boilerTemp = [],
-                            boilerTemp = [];;
+                            roomTemp = [],
+                            humData = [];;
                         $.each(results, function(i, field) {
                             var date = new Date(field.timeStamp);
                             var n = date.toLocaleTimeString();
