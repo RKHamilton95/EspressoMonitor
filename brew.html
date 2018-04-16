@@ -52,11 +52,13 @@
                 <div class="btn">
                     <button type="button" class="btn btn-primary" id="brew">Pull Shot</button>
                 </div>
-                <canvas id="brewTempChart"></canvas>
+                <canvas id="tempChart"></canvas>
             </div>
 
             <div class="container" style="width:3000; height:40%;">
-                <canvas id="tempChart"></canvas>
+                
+                <canvas id="brewTempChart"></canvas>
+                
             </div>
 
           
@@ -194,7 +196,7 @@
                             xAxisID: "Time",
                             yAxisID: "Temperature in F",
                             datasets: [{
-                                label: 'Ambient Temperature',
+                                label: 'Pressure in Bars',
                                 backgroundColor: "rgba(255,153,0,0.4)",
                                 data: roomTemp,
                                 radius: 2,
@@ -211,7 +213,7 @@
                                 title: {
                                     fontSize: 20,
                                     display: true,
-                                    text: "Ambient Temperature"
+                                    text: "Pressure"
                                 },
 
                                 scales: {
