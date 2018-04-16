@@ -57,8 +57,17 @@
 
 
 function addTable(value)
-{ table2.parentNode.removeChild(table2);
-  var timestamp = [value, "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
+{ 
+    $.getJSON(baseURL.concat("normal_data"), function(results){
+        $.each(results, function(i, field){
+            timeStampTbl.push(field.timeStamp);
+            ambientTempTbl.push(field.ambientTemp);
+            boilerTempTbl.push(field.boilerTemp);
+            ambientHumidityTbl.push(field.ambientHumidity);
+        });
+
+                
+  var timestamp = [ambientTempTbl[0], "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
   var value =[1,2,3,4,5,6,7];
 
   var items = [timestamp, value]; 
@@ -90,6 +99,8 @@ function addTable(value)
             tbody.appendChild(tr);
    }
  tableDiv.appendChild(table);
+    
+    });
 }
 </script>
         
@@ -128,6 +139,7 @@ $(document).ready(function(){
                         boilerTempTbl.push(field.boilerTemp);
                         ambientHumidityTbl.push(field.ambientHumidity);
                     });
+                    
                 });
                 
                 for(var col=0;col<tblHeading.length; col++)
