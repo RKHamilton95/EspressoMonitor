@@ -59,9 +59,7 @@
                 <canvas id="tempChart"></canvas>
             </div>
 
-            <div class="container" style="width:3000; height:40%;">
-                <canvas id="humChart"></canvas>
-            </div>
+   
 
         </div>
     
@@ -146,15 +144,13 @@
                     $.getJSON(("http://pidataspro.ddns.net:8056/shot_data"), function(results) {
                         var label = [],
                             boilerTemp = [],
-                            boilerTemp = [],
-                            boilerTemp = [];;
+                            pressure = [],
                         $.each(results, function(i, field) {
                             var date = new Date(field.timeStamp);
                             var n = date.toLocaleTimeString();
                             label.push(n);
                             boilerTemp.push(field.boilerTemp);
-                            roomTemp.push(field.boilerTemp);
-                            humData.push(field.boilerTemp);
+                            pressure.push(field.pressure);
                         });
                         var tempData = {
                             labels: label,
@@ -198,7 +194,7 @@
                             datasets: [{
                                 label: 'Ambient Temperature',
                                 backgroundColor: "rgba(255,153,0,0.4)",
-                                data: roomTemp,
+                                data: pressure,
                                 radius: 2,
                                 fill: true
                             }]
@@ -226,40 +222,7 @@
                             }
                         });
 
-                        var tempData3 = {
-                            labels: label,
-                            xAxisID: "Time",
-                            yAxisID: "Humidity",
-                            datasets: [{
-                                label: 'Ambient Humidity',
-                                backgroundColor: "rgba(192,192,192,0.4)",
-                                data: humData,
-                                radius: 2,
-                                fill: true
-                            }]
-                        };
-                        var tempChart3 = new Chart(ctx3, {
-                            type: 'line',
-                            data: tempData3,
-                            options: {
-                                animation: {
-                                    duration: 0
-                                },
-                                title: {
-                                    fontSize: 20,
-                                    display: true,
-                                    text: "Ambient Humidity"
-                                },
-
-                                scales: {
-                                    yAxes: [{
-                                        ticks: {
-                                            stepSize: 20
-                                        }
-                                    }]
-                                }
-                            }
-                        });
+                     
 
                     });
                 }, 1000);
