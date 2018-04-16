@@ -43,17 +43,26 @@
             <input class="container-fluid" type="text" name="shotID">
             <input class="container-fluid" type="submit" value="Submit">
         </form>
+        
         <!---Temp Chart--->
+        
+        <div class="container-fluid">
+            <canvas id="tempChart"></canvas>
+        </div>
         <div class="container-fluid">
             <canvas id="brewTempChart"></canvas>
         </div>
 
-        <div class="container-fluid">
-            <canvas id="tempChart"></canvas>
-        </div>
+        
         
         <script>
         
+        $('#form').submit(function(e) {
+                    alert(e);
+                    drawAll(e);
+                });    
+            
+            
         var ctx = document.getElementById("brewTempChart").getContext("2d");
             var ctx2 = document.getElementById("tempChart").getContext("2d");
           //  var ctx3 = document.getElementById("humChart").getContext("2d");
@@ -62,10 +71,10 @@
             ctx2.fillStyle = "white"
            // ctx3.fillStyle = "white"
 
-            drawAll();
+            
 
-            function drawAll() {
-                    $.getJSON(("http://pidataspro.ddns.net:8056/shot_data/8"), function(results) {
+            function drawAll(id) {
+                    $.getJSON(("http://pidataspro.ddns.net:8056/shot_data/" + id), function(results) {
                         var label = [],
                             boilerTemp = [],
                             roomTemp = [];
