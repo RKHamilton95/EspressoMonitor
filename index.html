@@ -129,13 +129,13 @@
                 setInterval(function() {
                     $.getJSON(("http://pidataspro.ddns.net:8056/getLastNormal"), function(results){
                         var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
-                        var test;
+                        var test = results.field.ambientTemp; ;
                        // var all = [];
                         $.each(results, function(i, field){
                             ambientTemp.push(field.ambientTemp);
                             boilerTemp.push(field.boilerTemp);
                             ambientHumidity.push(field.ambientHumidity);
-                            test = field.ambientTemp; 
+                            
                             
                         });
                         //Returns all of the values
