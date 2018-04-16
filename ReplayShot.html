@@ -37,7 +37,7 @@
                 </div>
             </div>
         </nav>
-
+        <input name = "in" type="text"/>
         <form id ="formTest">
             <p class="shotText container-fluid"><b>Enter a shot ID:</b></p>
             <input class="container-fluid" type="text" name="shotID">
@@ -58,12 +58,7 @@
         <script>
         
         $('#formTest').submit(function(e) {
-                $.each($('form').serializeArray,function(){
-                    alert(this.value.shotID)
-                });
-                    var fields = $(this).serializeArray();
-            alert(fields);
-                    drawAll(fields.shotID);
+       drawAll(document.getElementById('in').value)
                 });    
             
             
