@@ -19,55 +19,54 @@ connection.connect();
 
 app.get('/shot_data', function(req,res){
     console.log(req)
-connection.query('SELECT * FROM shot_data', function (error, rows){
-	if(error) throw error;
-	res.json(rows);
-
-});
+    connection.query('SELECT * FROM shot_data', function (error, rows){
+        if(error) throw error;
+        res.json(rows);
+    });
 })
 
 app.get('/normal_data', function(req,res){
-connection.query('SELECT * FROM normal_data', function (error, rows){
-	if(error) throw error;
-	res.json(rows);
+    connection.query('SELECT * FROM normal_data', function (error, rows){
+        if(error) throw error;
+        res.json(rows);
 
-});
+    });
 })
 
 app.get('/getLastNormal', function(req,res){
-connection.query('SELECT * FROM normal_data ORDER BY id DESC limit 0,1;', function (error, rows){
-	if(error) throw error;
-	res.json(rows);
-
-});
+    connection.query('SELECT * FROM normal_data ORDER BY id DESC limit 0,1;', function (error, rows){
+        if(error) throw error;
+        res.json(rows);
+    });
 })
 
+
+app.get('/getNormal60', function(req,res){
+    connection.query("SELECT * FROM normal_data WHERE timeStamp >= Datetime('now', '-60 minutes')", function (error, rows){
+        if(error) throw error;
+        res.json(rows);
+    });
+})
 
 
 app.get('/on', function (req, res) {
   PythonShell.run('../pythonMysqlScripts/sendData.py', {args: ['1']},function (err, results) {
   if (err) throw err;
-  // results is an array consisting of messages collected during execution
   });
   res.send('Machine On')
 })
 app.get('/off', function (req, res) {
   PythonShell.run('../pythonMysqlScripts/sendData.py', {args: ['2']}, function (err, results) {
   if (err) throw err;
-    
-  // results is an array consisting of messages collected during execution
   });
   res.send('Machine Off')
 })
 app.get('/brew', function (req, res) {
   PythonShell.run('../pythonMysqlScripts/sendData.py', {args: ['3']}, function (err, results) {
   if (err) throw err;
-    
-  // results is an array consisting of messages collected during execution
   });
   res.send('Brewing')
 })
-
 
 
 
