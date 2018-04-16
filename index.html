@@ -42,12 +42,11 @@
             
         </div>
         
-        <div style="width: 10%; height: 10%;">
+        
             <div  id="chartBoilerTemp" style="position:relative;"></div>
             <div  id="chartAmbientTemp" style="width: 100%; height: 120%;"></div>
             <div  id="chartHumidity" style="width: 100px; height: 120px;"></div>
-        
-         </div>
+       
         <!--- Gauges ----->
         <script type="text/javascript">
             google.charts.load('current', {'packages':['gauge']});
@@ -83,21 +82,21 @@
                         ]);
 
                         var boilerTempOptions = {
-                            width: 700, height: 300,
+                           // width: 700, height: 300,
                             redFrom: 250, redTo: 300,
                             yellowFrom: 150, yellowTo: 250,
                             minorTicks: 10, max: 300
                         };
 
                         var ambientTempOptions = {
-                            width: 700, height: 300,
+                        //    width: 700, height: 300,
                             redFrom: 90, redTo: 120,
                             yellowFrom:60, yellowTo: 90,
                             minorTicks: 5, max: 120
                         };
 
                         var humidityOptions = {
-                            width: 700, height: 300,
+                          //  width: 700, height: 300,
                             redFrom: 14, redTo: 20,
                             yellowFrom: 8, yellowTo: 14,
                             minorTicks: 1, max: 20
