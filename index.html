@@ -73,8 +73,8 @@
                             var label1 = [], boilerTemp=[],roomTemp=[];
                             
                             $.each(results, function(i, field){
-                                let date = new Date(field.timeStamp)
-                                label1.push(date.getDay());
+                                var date = new Date(field.timeStamp);
+                                label1.push(date.getTime());
                                 boilerTemp.push(field.boilerTemp);
                             });
                             var tempData = {
