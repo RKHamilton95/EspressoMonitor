@@ -12,8 +12,39 @@
 
 
     </head>
-    
-               <!--- Gauges ----->
+    <body style="background-color:#37474f ;">
+
+    <body class="main">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href="#">PiSproDB</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.html">Home</a></li>
+                        <li><a href="brew.html">Brew</a></li>
+                        <li><a href="ReplayShot.html">Replay Shot</a></li>
+                        <li><a href="databaseTables.html">DB Tables</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+        <div>
+            <img class="container-fluid" src= "http://pidataspro.ddns.net:8057?action=stream" width="640" height="480"/>
+        </div>
+        
+        
+        
+        
+                <!--- Gauges ----->
         <script type="text/javascript">
             google.charts.load('current', {'packages':['gauge']});
             google.charts.setOnLoadCallback(drawChart);
@@ -21,7 +52,7 @@
 
             function drawChart() {
                 setInterval(function() {
-                    $.getJSON(("http://pidataspro.ddns.net:8057/getLastNormal"), function(results){
+                    $.getJSON(("http://pidataspro.ddns.net:8056/getLastNormal"), function(results){
                         var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
                         var all = [];
                         $.each(results, function(i, field){
@@ -89,40 +120,6 @@
                 }, 1000);
             }
         </script>
-    
-    <body style="background-color:#37474f ;">
-
-    <body class="main">
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                    </button>
-                    <a class="navbar-brand" href="#">PiSproDB</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="brew.html">Brew</a></li>
-                        <li><a href="ReplayShot.html">Replay Shot</a></li>
-                        <li><a href="databaseTables.html">DB Tables</a></li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
-
-        <div>
-            <img class="container-fluid" src= "http://pidataspro.ddns.net:8057?action=stream" width="640" height="480"/>
-        </div>
-        
-        
-        
-        
-     
         
         
         
