@@ -143,18 +143,18 @@
 
             function drawAll() {
                 setInterval(function() {
-                    $.getJSON(("http://pidataspro.ddns.net:8056/getNormal60"), function(results) {
+                    $.getJSON(("http://pidataspro.ddns.net:8056/shot_data"), function(results) {
                         var label = [],
                             boilerTemp = [],
-                            roomTemp = [],
-                            humData = [];;
+                            boilerTemp = [],
+                            boilerTemp = [];;
                         $.each(results, function(i, field) {
                             var date = new Date(field.timeStamp);
                             var n = date.toLocaleTimeString();
                             label.push(n);
                             boilerTemp.push(field.boilerTemp);
-                            roomTemp.push(field.ambientTemp);
-                            humData.push(field.ambientHumidity);
+                            roomTemp.push(field.boilerTemp);
+                            humData.push(field.boilerTemp);
                         });
                         var tempData = {
                             labels: label,
