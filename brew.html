@@ -59,7 +59,9 @@
                 <canvas id="tempChart"></canvas>
             </div>
 
-   
+            <div class="container" style="width:3000; height:40%;">
+                <canvas id="humChart"></canvas>
+            </div>
 
         </div>
     
@@ -131,11 +133,11 @@
 
             var ctx = document.getElementById("brewTempChart").getContext("2d");
             var ctx2 = document.getElementById("tempChart").getContext("2d");
-            
+            var ctx3 = document.getElementById("humChart").getContext("2d");
 
             ctx.fillStyle = "white"
             ctx2.fillStyle = "white"
-           
+            ctx3.fillStyle = "white"
 
             drawAll();
 
@@ -144,13 +146,15 @@
                     $.getJSON(("http://pidataspro.ddns.net:8056/shot_data"), function(results) {
                         var label = [],
                             boilerTemp = [],
-                            pressure = [],
+                            boilerTemp = [],
+                            boilerTemp = [];;
                         $.each(results, function(i, field) {
                             var date = new Date(field.timeStamp);
                             var n = date.toLocaleTimeString();
                             label.push(n);
                             boilerTemp.push(field.boilerTemp);
-                            pressure.push(field.pressure);
+                            roomTemp.push(field.boilerTemp);
+                            humData.push(field.boilerTemp);
                         });
                         var tempData = {
                             labels: label,
@@ -194,7 +198,7 @@
                             datasets: [{
                                 label: 'Ambient Temperature',
                                 backgroundColor: "rgba(255,153,0,0.4)",
-                                data: pressure,
+                                data: boilerTemp,
                                 radius: 2,
                                 fill: true
                             }]
@@ -222,7 +226,40 @@
                             }
                         });
 
-                     
+                        var tempData3 = {
+                            labels: label,
+                            xAxisID: "Time",
+                            yAxisID: "Humidity",
+                            datasets: [{
+                                label: 'Ambient Humidity',
+                                backgroundColor: "rgba(192,192,192,0.4)",
+                                data: boilerTemp,
+                                radius: 2,
+                                fill: true
+                            }]
+                        };
+                        var tempChart3 = new Chart(ctx3, {
+                            type: 'line',
+                            data: tempData3,
+                            options: {
+                                animation: {
+                                    duration: 0
+                                },
+                                title: {
+                                    fontSize: 20,
+                                    display: true,
+                                    text: "Ambient Humidity"
+                                },
+
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            stepSize: 20
+                                        }
+                                    }]
+                                }
+                            }
+                        });
 
                     });
                 }, 1000);
