@@ -45,45 +45,23 @@
             <div  id="chartAmbientTemp" style="width: 160px; height: 160px;  float:left;margin-left: 5px;overflow: hidden;"></div>
             <div  id="chartHumidity" style="width: 160px; height: 160px;  float:left;margin-left: 5px;overflow: hidden;"></div>
             
+            
+            
+            
+            
+            
+            
         </div>
         
-        
-          
-       
-      
-        
-        
-        
-        <div class="btn" class="container">
+              
+        <div class="btn" class="container" style="float:left;">
             <button type="button" class="btn btn-primary" id="on">Turn On Machine</button>
             <button type="button" class="btn btn-primary" id="off">Turn Off Machine</button>
             <button type="button" class="btn btn-primary" id="brew">Pull Shot</button>  
         </div>
         
-        <script>
-            $(document).ready(function(){           
-                $("#on").click(function(e){
-                    e.preventDefault();
-                    $.ajax({
-                        type: "GET", url: "on"});
-                });
-                $("#off").click(function(e){
-                    e.preventDefault();
-                    $.ajax({
-                        type: "GET", url: "off"});
-                });
-                $("#brew").click(function(e){
-                    e.preventDefault();
-                    $.ajax({
-                        type: "GET", url: "brew"});
-                });
-            });
 
-        </script>
-
-        <br>
-        <br>
-        <div class="projinf" style="align:left">
+        <div class="projinf" style="float:left;">
             <heading class="pTitle"><u><b>PiSproDB Espresso Machine and Logging:</b></u></heading>
             <p class="pGraph">In this project we aimed to explore what was possible when it comes to creating the perfect shot of espresso. We created a monitor and logging system for Peter's Arduino/RaspberryPi based espresso machine. 
                 Data Collected:
@@ -105,6 +83,27 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        
+                <script>
+            $(document).ready(function(){           
+                $("#on").click(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        type: "GET", url: "on"});
+                });
+                $("#off").click(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        type: "GET", url: "off"});
+                });
+                $("#brew").click(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        type: "GET", url: "brew"});
+                });
+            });
+
+        </script>
           <!--- Gauges ----->
         <script type="text/javascript">
             google.charts.load('current', {'packages':['gauge']});
