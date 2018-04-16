@@ -4,8 +4,6 @@
         <meta charset="utf-8" />
         <title>PiSproDB</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- <link href="nouislider.min.css" rel="stylesheet"> -->
-        <link href="toggle-switch.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="stylesheet.css">
         <link rel="stylesheet" type="text/css" href="brew.css">
         <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -138,7 +136,7 @@
 
             function drawAll() {
                 setInterval(function() {
-                    $.getJSON(("http://pidataspro.ddns.net:8056/shot_data"), function(results) {
+                    $.getJSON(("http://pidataspro.ddns.net:8056/shot_data/:3"), function(results) {
                         var label = [],
                             boilerTemp = [],
                             pressure = [],
