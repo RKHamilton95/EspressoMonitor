@@ -62,6 +62,10 @@
                 <div class="container" style="width:3000; height:40%;">
                     <canvas id="tempChart"></canvas>
                 </div>  
+            
+                <div class="container" style="width:3000; height:40%;">
+                    <canvas id="humChart"></canvas>
+                </div>
                 
             </div>
         
@@ -306,7 +310,60 @@
                     }
                     drawTempChart();
                 
-            
+            var ctx3 = document.getElementById("humChart").getContext("2d");
+                    var baseURL = "http://pidataspro.ddns.net:8056/";
+                    ctx3.fillStyle = "white"
+                    function drawHumChart() {
+                        setInterval(function() {
+                        $.getJSON(baseURL.concat("getNormal60"), function(results){
+                            var label3 = [],humData=[];
+                            
+                            $.each(results, function(i, field){
+                                var date = new Date(field.timeStamp);
+                                var n3 = date.toLocaleTimeString();
+                                label3.push(n3);
+                                humData.push(field.ambientHumidity);
+                            });
+                            var tempData3 = {
+                                labels: label3,
+                                xAxisID: "Time",
+                                yAxisID: "Humidity",
+                                datasets : [{
+                                    label: 'Ambient Humidity',
+                                    backgroundColor: "rgba(153,255,51,0.4)",
+                                    data: humData,
+                                    radius: 2,
+                                    fill: true
+                                    //showLine: false
+                                }]
+                            };
+                            var tempChart3 = new Chart(ctx2, {
+                                type: 'line',
+                                data: tempData3,
+                                options:{
+                                    animation:{
+                                        duration: 0
+                                    },
+                                    title: {
+                                        fontSize: 20,
+                                        display: true,
+                                        text: "Ambient Humidity"},
+
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                stepSize: 20
+                                            }
+                                        }]
+
+                                    }
+                                }
+                            });
+                        });
+                            }, 1000);
+                    }
+                    drawHumChart();
+                
             
             
             
