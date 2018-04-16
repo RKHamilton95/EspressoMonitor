@@ -67,7 +67,7 @@
                 case normal_data:
                 var timeStampTbl = [], boilerTempTbl = [], ambientTempTbl = [],ambientHumidityTbl = [];
                 var tblHeading = ["TimeStamp","Boiler Temp","Ambient Temp","Humidity"];
-                $.getJSON(baseURL.concat(JSON.parse((sel)), function(results){
+                $.getJSON(baseURL.concat("normal_data"), function(results){
                     $.each(results, function(i, field){
                         ambientTempTbl.push(field.ambientTemp);
                         boilerTempTbl.push(field.boilerTemp);
