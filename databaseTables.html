@@ -58,7 +58,7 @@
 
 function addTable(value)
 {   var timeStampTbl = [], boilerTempTbl = [], ambientTempTbl = [],ambientHumidityTbl = [];
-    $.getJSON("http://pidataspro.ddns.net:8056/normal_data"), function(results){
+    $.getJSON(("http://pidataspro.ddns.net:8056/normal_data"), function(results){
         $.each(results, function(i, field){
             timeStampTbl.push(field.timeStamp);
             ambientTempTbl.push(field.ambientTemp);
