@@ -65,6 +65,7 @@
                     ctx.fillStyle = "white"
 
                     function drawRealTempChart() {
+                        setInterval(function() {
                         $.getJSON(baseURL.concat("getNormal60"), function(results){
                             var label1 = [], boilerTemp=[],roomTemp=[];
                             $.each(results, function(i, field){
@@ -106,8 +107,11 @@
                                 }
                             });
                         });
+                            }, 1000);
                     }
                     drawRealTempChart();
+                    
+                    
                 </script> 
             
               
