@@ -76,7 +76,7 @@
 
             function drawChart() {
                 setInterval(function() {
-                    $.getJSON(("http://pidataspro.ddns.net:8056/getLastNormal"), function(results) {
+                    $.getJSON(("http://pidataspro.ddns.net:8056/shot_data"), function(results) {
                         var boilerTemp, ambientTemp, ambientHumidity;
                         $.each(results, function(i, field) {
                             boilerTemp = field.boilerTemp
@@ -126,7 +126,7 @@
                         chartAmbientTemp.draw(dataAmbientTemp, ambientTempOptions);
                         chartHumidity.draw(dataHumidity, humidityOptions);
                     });
-                }, 1000);
+                }, 500);
             }
 
 
@@ -146,15 +146,13 @@
                     $.getJSON(("http://pidataspro.ddns.net:8056/getNormal60"), function(results) {
                         var label = [],
                             boilerTemp = [],
-                            roomTemp = [],
-                            humData = [];;
+                            pressure = [],
                         $.each(results, function(i, field) {
                             var date = new Date(field.timeStamp);
                             var n = date.toLocaleTimeString();
                             label.push(n);
                             boilerTemp.push(field.boilerTemp);
-                            roomTemp.push(field.ambientTemp);
-                            humData.push(field.ambientHumidity);
+                            pressure.push(field.pressure);
                         });
                         var tempData = {
                             labels: label,
@@ -194,11 +192,11 @@
                         var tempData2 = {
                             labels: label,
                             xAxisID: "Time",
-                            yAxisID: "Temperature in F",
+                            yAxisID: "Pressure in Bars",
                             datasets: [{
-                                label: 'Ambient Temperature',
+                                label: 'Pressure',
                                 backgroundColor: "rgba(255,153,0,0.4)",
-                                data: roomTemp,
+                                data: pressure,
                                 radius: 2,
                                 fill: true
                             }]
@@ -213,42 +211,7 @@
                                 title: {
                                     fontSize: 20,
                                     display: true,
-                                    text: "Ambient Temperature"
-                                },
-
-                                scales: {
-                                    yAxes: [{
-                                        ticks: {
-                                            stepSize: 20
-                                        }
-                                    }]
-                                }
-                            }
-                        });
-
-                        var tempData3 = {
-                            labels: label,
-                            xAxisID: "Time",
-                            yAxisID: "Humidity",
-                            datasets: [{
-                                label: 'Ambient Humidity',
-                                backgroundColor: "rgba(192,192,192,0.4)",
-                                data: humData,
-                                radius: 2,
-                                fill: true
-                            }]
-                        };
-                        var tempChart3 = new Chart(ctx3, {
-                            type: 'line',
-                            data: tempData3,
-                            options: {
-                                animation: {
-                                    duration: 0
-                                },
-                                title: {
-                                    fontSize: 20,
-                                    display: true,
-                                    text: "Ambient Humidity"
+                                    text: "Pressure"
                                 },
 
                                 scales: {
