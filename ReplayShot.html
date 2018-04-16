@@ -58,8 +58,8 @@
         <script>
         
         $('#form').submit(function(e) {
-                    alert(e);
-                    drawAll(e);
+                    var fields = $('#form').serializeArray();
+                    drawAll(fields.shotID);
                 });    
             
             
