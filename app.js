@@ -55,6 +55,12 @@ app.get('/getLastNormal', function(req,res){
     });
 })
 
+app.get('/getLastShotData', function(req,res){
+    connection.query('SELECT * FROM shot_data ORDER BY timeStamp DESC limit 0,1;', function (error, rows){
+        if(error) throw error;
+        res.json(rows);
+    });
+})
 
 app.get('/getNormal60', function(req,res){
     connection.query("SELECT * FROM normal_data WHERE timeStamp >= DATE_SUB(Now(),INTERVAL 30 MINUTE)", function (error, rows){
