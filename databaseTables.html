@@ -55,6 +55,7 @@
             setSelection();
 
             function setSelection(sel) {
+                
                 var baseURL = "http://pidataspro.ddns.net:8056/";
                 var tableDiv = document.getElementById("table"); 
                 var table = document.createElement('TABLE');
@@ -67,6 +68,7 @@
                 case normal_data:
                 var timeStampTbl = [], boilerTempTbl = [], ambientTempTbl = [],ambientHumidityTbl = [];
                 var tblHeading = ["TimeStamp","Boiler Temp","Ambient Temp","Humidity"];
+                
                 $.getJSON(baseURL.concat("normal_data"), function(results){
                     $.each(results, function(i, field){
                         timeStampTbl.push(field.timeStamp);
@@ -74,7 +76,7 @@
                         boilerTempTbl.push(field.boilerTemp);
                         ambientHumidityTbl.push(field.ambientHumidity);
                     });
-                
+                });
                 
                 for(var col=0; col<tblHeading.length; col++)
                 {
@@ -103,7 +105,7 @@
                 }
 
                 tableDiv.appendChild(table);
-            });
+            
                 /*switch(JSON.parse((sel))
                        {
                        var tableDiv = document.getElementById("table"); 
