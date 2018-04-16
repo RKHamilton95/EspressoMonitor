@@ -65,21 +65,18 @@
             tbody.appendChild(tr);
 
 
-
-            $.getJSON(baseURL.concat(JSON.parse((sel)), function(results){
-
                 switch(JSON.parse((sel))
                        {
                        case normal_data:
                        var timeStampTbl = [], boilerTempTbl = [], ambientTempTbl = [],ambientHumidityTbl = [];
                        var tblHeading = ["TimeStamp","Boiler Temp","Ambient Temp","Humidity"];
-                       
+                       $.getJSON(baseURL.concat(JSON.parse((sel)), function(results){
                        $.each(results, function(i, field){
                             ambientTempTbl.push(field.ambientTemp);
                             boilerTempTbl.push(field.boilerTemp);
                             ambientHumidityTbl.push(field.ambientHumidity);
                         });
-                
+                       });
                        for(var col=0; col<tblHeading.length; col++)
                         {
                         var th = document.createElement('TH');
@@ -113,7 +110,6 @@
                 case bean_data:
                 break;
             }
-        });
         });
         }
     </script>
