@@ -129,18 +129,21 @@
                 setInterval(function() {
                     $.getJSON(("http://pidataspro.ddns.net:8056/getLastNormal"), function(results){
                         var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
+                        var test;
                        // var all = [];
                         $.each(results, function(i, field){
                             ambientTemp.push(field.ambientTemp);
                             boilerTemp.push(field.boilerTemp);
                             ambientHumidity.push(field.ambientHumidity);
+                            test = field.ambientTemp; 
+                            
                         });
                         //Returns all of the values
                        // all = [boilerTemp[0],ambientTemp[0],ambientHumidity[0]]; 
 
                         var dataBoilerTemp = google.visualization.arrayToDataTable([
                             ['Label', 'Value'],
-                            ['Boiler Temp', boilerTemp[0]]
+                            ['Boiler Temp', test]
                         ]);
 
                         var dataAmbientTemp = google.visualization.arrayToDataTable([
@@ -182,14 +185,14 @@
                         chartAmbientTemp.draw(dataAmbientTemp,ambientTempOptions);
                         chartHumidity.draw(dataHumidity,humidityOptions);
 
-                        dataBoilerTemp.setValue(0, 1, boilerTemp[0]);
-                        chartBoilerTemp.draw(dataBoilerTemp, boilerTempOptions);
+                       // dataBoilerTemp.setValue(0, 1, boilerTemp[0]);
+                    //    chartBoilerTemp.draw(dataBoilerTemp, boilerTempOptions);
                         
-                        dataAmbientTemp.setValue(1, 1, ambientTemp[0]);
-                        chartAmbientTemp.draw(dataAmbientTemp, ambientTempOptions);
+                    //    dataAmbientTemp.setValue(1, 1, ambientTemp[0]);
+                    //    chartAmbientTemp.draw(dataAmbientTemp, ambientTempOptions);
                         
-                        dataHumidity.setValue(2, 1, ambientHumidity[0]);
-                        chartHumidity.draw(dataHumidity, humidityOptions);
+                      //  dataHumidity.setValue(2, 1, ambientHumidity[0]);
+                    //    chartHumidity.draw(dataHumidity, humidityOptions);
 
                     });
                 }, 1000);
