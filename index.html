@@ -66,15 +66,28 @@
                     const monthNames = ["January", "February", "March", "April", "May", "June",
                       "July", "August", "September", "October", "November", "December"
                     ];
+                    
+                    function checkTime(i) {
+                      if (i < 10) {
+                        i = "0" + i;
+                      }
+                      return i;
+                    }
 
                     function drawRealTempChart() {
+                        
                         setInterval(function() {
                         $.getJSON(baseURL.concat("getNormal60"), function(results){
                             var label1 = [], boilerTemp=[],roomTemp=[];
                             
                             $.each(results, function(i, field){
                                 var date = new Date(field.timeStamp);
-                                label1.push(date.getTime());
+                                var h = date.getHours();
+                                var m = date.getMinutes();
+                                var s = date.getSeconds();
+                                m = checkTime(m);
+                                s = checkTime(s);
+                                label1.push(h + ":" + m + ":" + s);
                                 boilerTemp.push(field.boilerTemp);
                             });
                             var tempData = {
