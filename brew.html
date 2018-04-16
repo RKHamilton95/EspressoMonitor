@@ -45,7 +45,6 @@
         <div style="position: relative;">
                 <div id="chartBoilerTemp" style="width: 160px; height: 160px;  float:left; margin-left: 5px; overflow: hidden;"></div>
                 <div id="chartAmbientTemp" style="width: 160px; height: 160px;  float:left;margin-left: 5px;overflow: hidden;"></div>
-                <div id="chartHumidity" style="width: 160px; height: 160px;  float:left;margin-left: 5px;overflow: hidden;"></div>
 
             </div>
             <div class="container" style="width:3000; height:40%;">
@@ -126,7 +125,7 @@
                         chartAmbientTemp.draw(dataAmbientTemp, ambientTempOptions);
                         chartHumidity.draw(dataHumidity, humidityOptions);
                     });
-                }, 500);
+                }, 1000);
             }
 
 
@@ -136,7 +135,6 @@
 
             ctx.fillStyle = "white"
             ctx2.fillStyle = "white"
-            ctx3.fillStyle = "white"
 
             drawAll();
 
