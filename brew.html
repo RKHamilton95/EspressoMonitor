@@ -133,7 +133,6 @@
 
             var ctx = document.getElementById("brewTempChart").getContext("2d");
             var ctx2 = document.getElementById("tempChart").getContext("2d");
-            var ctx3 = document.getElementById("humChart").getContext("2d");
 
             ctx.fillStyle = "white"
             ctx2.fillStyle = "white"
@@ -143,7 +142,7 @@
 
             function drawAll() {
                 setInterval(function() {
-                    $.getJSON(("http://pidataspro.ddns.net:8056/getNormal60"), function(results) {
+                    $.getJSON(("http://pidataspro.ddns.net:8056/shot_data"), function(results) {
                         var label = [],
                             boilerTemp = [],
                             pressure = [],
