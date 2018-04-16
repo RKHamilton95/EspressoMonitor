@@ -52,7 +52,7 @@
         </select>
         <div id="table"></div>
         <script>
-            setSelection();
+            setSelection("normal_data");
 
             function setSelection(sel) {
 
@@ -76,6 +76,7 @@
                         ambientHumidityTbl.push(field.ambientHumidity);
                     });
                 });
+                
                 for(var col=0; col<tblHeading.length; col++)
                 {
                     var th = document.createElement('TH');
@@ -83,6 +84,7 @@
                     th.appendChild(document.createTextNode(tblHeading[col]));
                     tr.appendChild(th);
                 }
+                
                 for (var f=0; f<timeStampTbl.length; f++)
                 {
                     var tr = document.createElement('TR'); 
