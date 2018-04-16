@@ -46,7 +46,7 @@
                 <div  id="chartBoilerTemp" style="width: 160px; height: 160px;  float:left; margin-left: 5px; overflow: hidden;"></div>
                 <div  id="chartAmbientTemp" style="width: 160px; height: 160px;  float:left;margin-left: 5px;overflow: hidden;"></div>
                 <div  id="chartHumidity" style="width: 160px; height: 160px;  float:left;margin-left: 5px;overflow: hidden;"></div>
-
+                <canvas id="brewTempChart"></canvas>
                 <div class="btn" style="position: absolute">
                     <button type="button" class="btn btn-primary" id="on">Turn On Machine</button>
                     <button type="button" class="btn btn-primary" id="off">Turn Off Machine</button>
@@ -54,7 +54,7 @@
                 </div>
             </div>
         </div>
-        <canvas id="brewTempChart"></canvas>
+        
         <!---Temp Chart--->
         <div class="container-fluid">
             <canvas id="brewTempChart"></canvas>
@@ -83,7 +83,8 @@
                                     backgroundColor: "rgba(153,255,51,0.4)",
                                     data: boilerTemp,
                                     radius: 2,
-                                    fill: true
+                                    fill: true,
+                                    showLine: false
                                 }]
                             };
                             var brewTempChart = new Chart(ctx, {
