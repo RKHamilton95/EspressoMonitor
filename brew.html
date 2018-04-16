@@ -104,23 +104,13 @@
                         chartHumidity.draw(dataHumidity,humidityOptions);
 
                         dataBoilerTemp.setValue(0, 1, boilerTemp[0]);
-                            chartBoilerTemp.draw(dataBoilerTemp, boilerTempOptions);
+                        chartBoilerTemp.draw(dataBoilerTemp, boilerTempOptions);
                         
-                         dataAmbientTemp.setValue(1, 1, ambientTemp[0]);
-                            chartAmbientTemp.draw(dataAmbientTemp, ambientTempOptions);
+                        dataAmbientTemp.setValue(1, 1, ambientTemp[0]);
+                        chartAmbientTemp.draw(dataAmbientTemp, ambientTempOptions);
                         
-                         dataHumidity.setValue(2, 1, ambientHumidity[0]);
-                            chartHumidity.draw(dataHumidity, humidityOptions);
-                        
-                        //setInterval(function() {
-                            
-                        //}, 2000);
-                    //    setInterval(function() {
-                           
-                      //  }, 1000);
-                     //   setInterval(function() {
-                    //     
-                    //    }, 1000);
+                        dataHumidity.setValue(2, 1, ambientHumidity[0]);
+                        chartHumidity.draw(dataHumidity, humidityOptions);
 
                     });
                 }, 1000);
@@ -261,7 +251,6 @@
 
         <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="/socket.io/socket.io.js"></script>
         <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
         <!-- // <script src="https://github.com/seiyria/bootstrap-slider/tree/master/distbootstrap-slider.min.js"></script> -->
