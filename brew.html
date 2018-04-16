@@ -144,7 +144,7 @@
                     $.getJSON(("http://pidataspro.ddns.net:8056/shot_data"), function(results) {
                         var label = [],
                             boilerTemp = [],
-                            roomTemp = [],
+                            roomTemp = [];
                            // humData = [];;
                         $.each(results, function(i, field) {
                             var date = new Date(field.timeStamp);
@@ -196,7 +196,7 @@
                             datasets: [{
                                 label: 'Ambient Temperature',
                                 backgroundColor: "rgba(255,153,0,0.4)",
-                                data: boilerTemp,
+                                data: roomTemp,
                                 radius: 2,
                                 fill: true
                             }]
