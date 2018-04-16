@@ -55,15 +55,13 @@
             setSelection("normal_data");
 
             function setSelection(sel) {
-
+                var baseURL = "http://pidataspro.ddns.net:8056/";
                 var tableDiv = document.getElementById("table"); 
                 var table = document.createElement('TABLE');
                 var tbody= document.createElement('TBODY');  
                 var tr = document.createElement('TR');
 
                 table.appendChild(tbody);
-
-                //create header
                 tbody.appendChild(tr);
 
                 case normal_data:
