@@ -40,6 +40,35 @@
             </div>
         </nav>
 
+        
+        <div style="position: relative;">
+                <div id="chartBoilerTemp" style="width: 160px; height: 160px;  float:left; margin-left: 5px; overflow: hidden;"></div>
+                <div id="chartAmbientTemp" style="width: 160px; height: 160px;  float:left;margin-left: 5px;overflow: hidden;"></div>
+                <div id="chartHumidity" style="width: 160px; height: 160px;  float:left;margin-left: 5px;overflow: hidden;"></div>
+
+
+
+            </div>
+            <div class="container" style="width:3000; height:40%;">
+                <div class="btn">
+                    <button type="button" class="btn btn-primary" id="on">Turn On Machine</button>
+                    <button type="button" class="btn btn-primary" id="off">Turn Off Machine</button>
+                    <button type="button" class="btn btn-primary" id="brew">Pull Shot</button>
+                </div>
+                <canvas id="brewTempChart"></canvas>
+            </div>
+
+            <div class="container" style="width:3000; height:40%;">
+                <canvas id="tempChart"></canvas>
+            </div>
+
+            <div class="container" style="width:3000; height:40%;">
+                <canvas id="humChart"></canvas>
+            </div>
+
+        
+    
+        
         <!--- Gauges ----->
         <script>
             /*
@@ -120,13 +149,13 @@
         </script>
         
         <body class="container-fluid">
-            <div class="brewShot" id="chartBoilerTemp" style="width: 700px; height: 300px;"></div>
-            <div class="brewShot" id="chartAmbientTemp" style="width: 700px; height: 300px;"></div>
-            <div class="brewShot" id="chartHumidity" style="width: 700px; height: 300px;"></div>
+            <div class="brewShot" id="chartBoilerTemps" style="width: 700px; height: 300px;"></div>
+            <div class="brewShot" id="chartAmbientTemps" style="width: 700px; height: 300px;"></div>
+            <div class="brewShot" id="chartHumiditys" style="width: 700px; height: 300px;"></div>
         </body>
         <!---Temp Chart--->
         <div class="container-fluid">
-            <canvas id="brewTempChart"></canvas>
+            <canvas id="brewTempCharts"></canvas>
             <body>
                 <script>
                     /*
