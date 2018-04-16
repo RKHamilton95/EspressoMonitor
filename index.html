@@ -43,7 +43,82 @@
         
         
         
-        
+                <!--- Gauges ----->
+        <script type="text/javascript">
+            google.charts.load('current', {'packages':['gauge']});
+            google.charts.setOnLoadCallback(drawChart);
+
+
+            function drawChart() {
+                setInterval(function() {
+                    $.getJSON(baseURL.concat("getLastNormal"), function(results){
+                        var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
+                        var all = [];
+                        $.each(results, function(i, field){
+                            ambientTemp.push(field.ambientTemp);
+                            boilerTemp.push(field.boilerTemp);
+                            ambientHumidity.push(field.ambientHumidity);
+                        });
+                        //Returns all of the values
+                        all = [boilerTemp[0],ambientTemp[0],ambientHumidity[0]]; 
+
+                        var dataBoilerTemp = google.visualization.arrayToDataTable([
+                            ['Label', 'Value'],
+                            ['Boiler Temp', all[0]]
+                        ]);
+
+                        var dataAmbientTemp = google.visualization.arrayToDataTable([
+                            ['Label', 'Value'],
+                            ['Room Temp', all[1]]
+                        ]);
+
+                        var dataHumidity = google.visualization.arrayToDataTable([
+                            ['Label', 'Value'],
+                            ['Humidity', all[2]]
+                        ]);
+
+                        var boilerTempOptions = {
+                            width: 700, height: 300,
+                            redFrom: 250, redTo: 300,
+                            yellowFrom: 150, yellowTo: 250,
+                            minorTicks: 10, max: 300
+                        };
+
+                        var ambientTempOptions = {
+                            width: 700, height: 300,
+                            redFrom: 90, redTo: 120,
+                            yellowFrom:60, yellowTo: 90,
+                            minorTicks: 5, max: 120
+                        };
+
+                        var humidityOptions = {
+                            width: 700, height: 300,
+                            redFrom: 14, redTo: 20,
+                            yellowFrom: 8, yellowTo: 14,
+                            minorTicks: 1, max: 20
+                        };
+
+                        var chartBoilerTemp = new google.visualization.Gauge(document.getElementById('chartBoilerTemp'));
+                        var chartAmbientTemp = new google.visualization.Gauge(document.getElementById('chartAmbientTemp'));
+                        var chartHumidity = new google.visualization.Gauge(document.getElementById('chartHumidity'));
+
+                        chartBoilerTemp.draw(dataBoilerTemp, boilerTempOptions);
+                        chartAmbientTemp.draw(dataAmbientTemp,ambientTempOptions);
+                        chartHumidity.draw(dataHumidity,humidityOptions);
+
+                        dataBoilerTemp.setValue(0, 1, boilerTemp[0]);
+                        chartBoilerTemp.draw(dataBoilerTemp, boilerTempOptions);
+                        
+                        dataAmbientTemp.setValue(1, 1, ambientTemp[0]);
+                        chartAmbientTemp.draw(dataAmbientTemp, ambientTempOptions);
+                        
+                        dataHumidity.setValue(2, 1, ambientHumidity[0]);
+                        chartHumidity.draw(dataHumidity, humidityOptions);
+
+                    });
+                }, 1000);
+            }
+        </script>
         
         
         
