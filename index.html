@@ -129,28 +129,28 @@
                 setInterval(function() {
                     $.getJSON(("http://pidataspro.ddns.net:8056/getLastNormal"), function(results){
                         var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
-                        var all = [];
+                       // var all = [];
                         $.each(results, function(i, field){
                             ambientTemp.push(field.ambientTemp);
                             boilerTemp.push(field.boilerTemp);
                             ambientHumidity.push(field.ambientHumidity);
                         });
                         //Returns all of the values
-                        all = [boilerTemp[0],ambientTemp[0],ambientHumidity[0]]; 
+                       // all = [boilerTemp[0],ambientTemp[0],ambientHumidity[0]]; 
 
                         var dataBoilerTemp = google.visualization.arrayToDataTable([
                             ['Label', 'Value'],
-                            ['Boiler Temp', all[0]]
+                            ['Boiler Temp', ambientTemp[0]]
                         ]);
 
                         var dataAmbientTemp = google.visualization.arrayToDataTable([
                             ['Label', 'Value'],
-                            ['Room Temp', all[1]]
+                            ['Room Temp', ambientTemp[0]]
                         ]);
 
                         var dataHumidity = google.visualization.arrayToDataTable([
                             ['Label', 'Value'],
-                            ['Humidity', all[2]]
+                            ['Humidity', ambientHumidity[0]]
                         ]);
 
                         var boilerTempOptions = {
@@ -208,25 +208,19 @@
                     function drawAll() {
                         setInterval(function() {
                         $.getJSON(("http://pidataspro.ddns.net:8056/getNormal60"), function(results){
-                            var label1 = [],label2 = [],label3 = [], boilerTemp=[],roomTemp=[],humData=[];;
+                            var label = [], boilerTemp=[],roomTemp=[],humData=[];;
                             
                             $.each(results, function(i, field){
                                 var date = new Date(field.timeStamp);
                                 var n = date.toLocaleTimeString();
-                                label1.push(n);
+                                label.push(n);
                                 boilerTemp.push(field.boilerTemp);
-                                
-                                var n2 = date.toLocaleTimeString();
-                                label2.push(n);
                                 roomTemp.push(field.ambientTemp);
-                                
-                                var n3 = date.toLocaleTimeString();
-                                label3.push(n);
                                 humData.push(field.ambientHumidity);
                                 
                             });
                             var tempData = {
-                                labels: label1,
+                                labels: label,
                                 xAxisID: "Time",
                                 yAxisID: "Temperature in F",
                                 datasets : [{
@@ -259,13 +253,10 @@
 
                                     }
                                 }
-                            });
-                            
-                            
-                            
+                            });                     
                             
                             var tempData2 = {
-                                labels: label2,
+                                labels: label,
                                 xAxisID: "Time",
                                 yAxisID: "Temperature in F",
                                 datasets : [{
@@ -299,10 +290,9 @@
                                     }
                                 }
                             });
-                            
-                            
+                                               
                             var tempData3 = {
-                                labels: label3,
+                                labels: label,
                                 xAxisID: "Time",
                                 yAxisID: "Humidity",
                                 datasets : [{
@@ -336,10 +326,7 @@
                                     }
                                 }
                             });
-                            
-                            
-                            
-                            
+               
                         });
                             }, 1000);
                     }
@@ -347,126 +334,6 @@
                 
             
             
-            
-            
-            
-            
-                    //var baseURL = "http://pidataspro.ddns.net:8056/";
-                   // ctx2.fillStyle = "white"
-                    function drawTempChart() {
-                        setInterval(function() {
-                        $.getJSON(baseURL.concat("getNormal60"), function(results){
-                            var label2 = [],roomTemp=[];
-                            
-                            $.each(results, function(i, field){
-                                var date = new Date(field.timeStamp);
-                                var n2 = date.toLocaleTimeString();
-                                label2.push(n2);
-                                roomTemp.push(field.ambientTemp);
-                            });
-                            var tempData2 = {
-                                labels: label2,
-                                xAxisID: "Time",
-                                yAxisID: "Temperature in F",
-                                datasets : [{
-                                    label: 'Ambient Temperature',
-                                    backgroundColor: "rgba(255,153,0,0.4)",
-                                    data: roomTemp,
-                                    radius: 2,
-                                    fill: true
-                                    //showLine: false
-                                }]
-                            };
-                            var tempChart = new Chart(ctx2, {
-                                type: 'line',
-                                data: tempData2,
-                                options:{
-                                    animation:{
-                                        duration: 0
-                                    },
-                                    title: {
-                                        fontSize: 20,
-                                        display: true,
-                                        text: "Ambient Temperature"},
-
-                                    scales: {
-                                        yAxes: [{
-                                            ticks: {
-                                                stepSize: 20
-                                            }
-                                        }]
-
-                                    }
-                                }
-                            });
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                        });
-                            }, 1000);
-                    }
-                   // drawTempChart();
-                
-            
-                   // var baseURL = "http://pidataspro.ddns.net:8056/";
-                    //ctx3.fillStyle = "white"
-                    function drawHumChart() {
-                        setInterval(function() {
-                        $.getJSON(baseURL.concat("getNormal60"), function(results){
-                            var label3 = [],humData=[];
-                            
-                            $.each(results, function(i, field){
-                                var date = new Date(field.timeStamp);
-                                var n3 = date.toLocaleTimeString();
-                                label3.push(n3);
-                                humData.push(field.ambientHumidity);
-                            });
-                            var tempData3 = {
-                                labels: label3,
-                                xAxisID: "Time",
-                                yAxisID: "Humidity",
-                                datasets : [{
-                                    label: 'Ambient Humidity',
-                                    backgroundColor: "rgba(192,192,192,0.4)",
-                                    data: humData,
-                                    radius: 2,
-                                    fill: true
-                                    //showLine: false
-                                }]
-                            };
-                            var tempChart3 = new Chart(ctx3, {
-                                type: 'line',
-                                data: tempData3,
-                                options:{
-                                    animation:{
-                                        duration: 0
-                                    },
-                                    title: {
-                                        fontSize: 20,
-                                        display: true,
-                                        text: "Ambient Humidity"},
-
-                                    scales: {
-                                        yAxes: [{
-                                            ticks: {
-                                                stepSize: 20
-                                            }
-                                        }]
-
-                                    }
-                                }
-                            });
-                        });
-                            }, 1000);
-                    }
-                //    drawHumChart();
-                
             
             
             
