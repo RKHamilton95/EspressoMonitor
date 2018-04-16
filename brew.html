@@ -62,7 +62,7 @@
                 all = [ambientTemp[0],boilerTemp[0],ambientHumidity[0]];
                 //all = [1,2,3];
                 return all;
-            }
+            }7y
             function drawChart() {
                 setInterval(function() {
                     $.getJSON(baseURL.concat("getLastNormal"), function(results){
@@ -117,21 +117,11 @@
                         var chartHumidity = new google.visualization.Gauge(document.getElementById('chartHumidity'));
 
                         chartBoilerTemp.draw(dataBoilerTemp, boilerTempOptions);
+                        dataBoilerTemp.setValue(0, 1, boilerTemp[0]);
                         chartAmbientTemp.draw(dataAmbientTemp,ambientTempOptions);
+                        dataAmbientTemp.setValue(1, 1, ambientTemp[0]);
                         chartHumidity.draw(dataHumidity,humidityOptions);
-
-                        setInterval(function() {
-                            dataBoilerTemp.setValue(0, 1, boilerTemp[0]);
-                            chartBoilerTemp.draw(dataBoilerTemp, boilerTempOptions);
-                        }, 2000);
-                        setInterval(function() {
-                            dataAmbientTemp.setValue(1, 1, ambientTemp[0]);
-                            chartAmbientTemp.draw(dataAmbientTemp, ambientTempOptions);
-                        }, 1000);
-                        setInterval(function() {
-                            dataHumidity.setValue(2, 1, ambientHumidity[0]);
-                            chartHumidity.draw(dataHumidity, humidityOptions);
-                        }, 1000);
+                        dataHumidity.setValue(2, 1, ambientHumidity[0]);
 
                     });
                 }, 1000);
