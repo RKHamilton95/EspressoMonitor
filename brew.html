@@ -4,6 +4,8 @@
         <meta charset="utf-8" />
         <title>PiSproDB</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link href="nouislider.min.css" rel="stylesheet"> -->
+        <link href="toggle-switch.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="stylesheet.css">
         <link rel="stylesheet" type="text/css" href="brew.css">
         <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -44,6 +46,7 @@
                 <div id="chartBoilerTemp" style="width: 160px; height: 160px;  float:left; margin-left: 5px; overflow: hidden;"></div>
                 <div id="chartAmbientTemp" style="width: 160px; height: 160px;  float:left;margin-left: 5px;overflow: hidden;"></div>
                 <div id="chartHumidity" style="width: 160px; height: 160px;  float:left;margin-left: 5px;overflow: hidden;"></div>
+
             </div>
             <div class="container" style="width:3000; height:40%;">
                 <div class="btn">
@@ -56,7 +59,9 @@
                 <canvas id="tempChart"></canvas>
             </div>
 
-   
+            <div class="container" style="width:3000; height:40%;">
+                <canvas id="humChart"></canvas>
+            </div>
 
         </div>
     
@@ -128,24 +133,28 @@
 
             var ctx = document.getElementById("brewTempChart").getContext("2d");
             var ctx2 = document.getElementById("tempChart").getContext("2d");
+            var ctx3 = document.getElementById("humChart").getContext("2d");
 
             ctx.fillStyle = "white"
             ctx2.fillStyle = "white"
+            ctx3.fillStyle = "white"
 
             drawAll();
 
             function drawAll() {
                 setInterval(function() {
-                    $.getJSON(("http://pidataspro.ddns.net:8056/shot_data/:3"), function(results) {
+                    $.getJSON(("http://pidataspro.ddns.net:8056/getNormal60"), function(results) {
                         var label = [],
                             boilerTemp = [],
-                            pressure = [],
+                            roomTemp = [],
+                            humData = [];;
                         $.each(results, function(i, field) {
                             var date = new Date(field.timeStamp);
                             var n = date.toLocaleTimeString();
                             label.push(n);
                             boilerTemp.push(field.boilerTemp);
-                            pressure.push(field.pressure);
+                            roomTemp.push(field.ambientTemp);
+                            humData.push(field.ambientHumidity);
                         });
                         var tempData = {
                             labels: label,
@@ -185,11 +194,11 @@
                         var tempData2 = {
                             labels: label,
                             xAxisID: "Time",
-                            yAxisID: "Pressure in Bars",
+                            yAxisID: "Temperature in F",
                             datasets: [{
-                                label: 'Pressure',
+                                label: 'Ambient Temperature',
                                 backgroundColor: "rgba(255,153,0,0.4)",
-                                data: pressure,
+                                data: roomTemp,
                                 radius: 2,
                                 fill: true
                             }]
@@ -204,7 +213,42 @@
                                 title: {
                                     fontSize: 20,
                                     display: true,
-                                    text: "Pressure"
+                                    text: "Ambient Temperature"
+                                },
+
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            stepSize: 20
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+
+                        var tempData3 = {
+                            labels: label,
+                            xAxisID: "Time",
+                            yAxisID: "Humidity",
+                            datasets: [{
+                                label: 'Ambient Humidity',
+                                backgroundColor: "rgba(192,192,192,0.4)",
+                                data: humData,
+                                radius: 2,
+                                fill: true
+                            }]
+                        };
+                        var tempChart3 = new Chart(ctx3, {
+                            type: 'line',
+                            data: tempData3,
+                            options: {
+                                animation: {
+                                    duration: 0
+                                },
+                                title: {
+                                    fontSize: 20,
+                                    display: true,
+                                    text: "Ambient Humidity"
                                 },
 
                                 scales: {
