@@ -49,7 +49,61 @@
         
             
        
-        <!--- Gauges ----->
+      
+        
+        
+        
+        <div class="btn" container-fluid style="float:left;">
+            <button type="button" class="btn btn-primary" id="on">Turn On Machine</button>
+            <button type="button" class="btn btn-primary" id="off">Turn Off Machine</button>
+            <button type="button" class="btn btn-primary" id="brew">Pull Shot</button>
+        </div>
+        <script>
+            $(document).ready(function(){           
+                $("#on").click(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        type: "GET", url: "on"});
+                });
+                $("#off").click(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        type: "GET", url: "off"});
+                });
+                $("#brew").click(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        type: "GET", url: "brew"});
+                });
+            });
+
+        </script>
+
+        <br>
+        <br>
+        <div class="projinf container-fluid">
+            <heading class="pTitle"><u><b>PiSproDB Espresso Machine and Logging:</b></u></heading>
+            <p class="pGraph">In this project we aimed to explore what was possible when it comes to creating the perfect shot of espresso. We created a monitor and logging system for Peter's Arduino/RaspberryPi based espresso machine. 
+                Data Collected:
+            <ul>
+                <li> Espresso Shot Pressure </li>
+                <li> Espresso Shot Time</li>
+                <li> Boiler Temperature</li>
+                <li> Ambient Temperature</li>
+                <li> Ambient Humidity</li>
+            </ul>
+            <p/>
+
+        </div>
+        <div class="gitDiv container-fluid"><heading class="gitHeading"><b><u>GitHub Links:</u></b><br>
+            <a href="https://github.com/pshutt/RaspberryEspresso"><font color="white">RaspberryEspresso</font></a><br>
+            <a href="https://github.com/RKHamilton95/EspressoMonitor"><font color="white">EspressoMonitor</font></a>
+            </heading>
+        </div>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+          <!--- Gauges ----->
         <script type="text/javascript">
             google.charts.load('current', {'packages':['gauge']});
             google.charts.setOnLoadCallback(drawChart);
@@ -124,63 +178,6 @@
                     });
                 }, 1000);
             }
-        </script>
-        
-        
-        
-        <div class="btn" container-fluid>
-            <button type="button" class="btn btn-primary" id="on">Turn On Machine</button>
-            <button type="button" class="btn btn-primary" id="off">Turn Off Machine</button>
-            <button type="button" class="btn btn-primary" id="brew">Pull Shot</button>
-        </div>
-        <script>
-            $(document).ready(function(){           
-                $("#on").click(function(e){
-                    e.preventDefault();
-                    $.ajax({
-                        type: "GET", url: "on"});
-                });
-                $("#off").click(function(e){
-                    e.preventDefault();
-                    $.ajax({
-                        type: "GET", url: "off"});
-                });
-                $("#brew").click(function(e){
-                    e.preventDefault();
-                    $.ajax({
-                        type: "GET", url: "brew"});
-                });
-            });
-
-        </script>
-
-        <br>
-        <br>
-        <div class="projinf container-fluid">
-            <heading class="pTitle"><u><b>PiSproDB Espresso Machine and Logging:</b></u></heading>
-            <p class="pGraph">In this project we aimed to explore what was possible when it comes to creating the perfect shot of espresso. We created a monitor and logging system for Peter's Arduino/RaspberryPi based espresso machine. 
-                Data Collected:
-            <ul>
-                <li> Espresso Shot Pressure </li>
-                <li> Espresso Shot Time</li>
-                <li> Boiler Temperature</li>
-                <li> Ambient Temperature</li>
-                <li> Ambient Humidity</li>
-            </ul>
-            <p/>
-
-        </div>
-        <div class="gitDiv container-fluid"><heading class="gitHeading"><b><u>GitHub Links:</u></b><br>
-            <a href="https://github.com/pshutt/RaspberryEspresso"><font color="white">RaspberryEspresso</font></a><br>
-            <a href="https://github.com/RKHamilton95/EspressoMonitor"><font color="white">EspressoMonitor</font></a>
-            </heading>
-        </div>
-
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-        <script>
-
-
         </script>
         </body>
         <html/>
