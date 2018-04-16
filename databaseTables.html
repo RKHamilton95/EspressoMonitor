@@ -69,6 +69,7 @@
                 var tblHeading = ["TimeStamp","Boiler Temp","Ambient Temp","Humidity"];
                 $.getJSON(baseURL.concat("normal_data"), function(results){
                     $.each(results, function(i, field){
+                        timeStampTbl.push(field.timeStamp);
                         ambientTempTbl.push(field.ambientTemp);
                         boilerTempTbl.push(field.boilerTemp);
                         ambientHumidityTbl.push(field.ambientHumidity);
