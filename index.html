@@ -40,7 +40,7 @@
         </nav>
 
         <div>
-            <img class="container-fluid" src= "http://pidataspro.ddns.net:8057?action=stream" width="640" height="480" style="float:left; " />
+            <img class="container" src= "http://pidataspro.ddns.net:8057?action=stream" width="640" height="480" style="float:left; " />
             
             <div style="position: relative;">
                 <div  id="chartBoilerTemp" style="width: 160px; height: 160px;  float:left; margin-left: 5px; overflow: hidden;"></div>
@@ -53,12 +53,14 @@
                     <button type="button" class="btn btn-primary" id="brew">Pull Shot</button>  
                 </div>
                 
+                <div class="container" style="width:2000; height:40%;">
+            <canvas id="brewTempChart"></canvas>
+          </div> 
+                
             </div>
         </div>
         
- <div class="container" style="width:2000; height:40%;">
-            <canvas id="brewTempChart"></canvas>
-          </div>  
+         
      
      
                 <script>
