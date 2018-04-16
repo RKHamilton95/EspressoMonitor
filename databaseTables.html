@@ -52,6 +52,8 @@
         </select>
         <div id="table"></div>
         <script>
+            setSelection();
+
             function setSelection(sel) {
 
                 var tableDiv = document.getElementById("table"); 
@@ -81,7 +83,7 @@
                     th.appendChild(document.createTextNode(tblHeading[col]));
                     tr.appendChild(th);
                 }
-                for (var f=0; f<timeStamp.length; f++)
+                for (var f=0; f<timeStampTbl.length; f++)
                 {
                     var tr = document.createElement('TR'); 
                     var time = document.createElement('TD');
@@ -102,42 +104,52 @@
                 tableDiv.appendChild(table);
                 /*switch(JSON.parse((sel))
                        {
-                       case normal_data:
-                       var timeStampTbl = [], boilerTempTbl = [], ambientTempTbl = [],ambientHumidityTbl = [];
-                       var tblHeading = ["TimeStamp","Boiler Temp","Ambient Temp","Humidity"];
-                       $.getJSON(baseURL.concat(JSON.parse((sel)), function(results){
-                       $.each(results, function(i, field){
-                            ambientTempTbl.push(field.ambientTemp);
-                            boilerTempTbl.push(field.boilerTemp);
-                            ambientHumidityTbl.push(field.ambientHumidity);
-                        });
-                       });
-                       for(var col=0; col<tblHeading.length; col++)
-                        {
-                        var th = document.createElement('TH');
-                        th.width = '75';
-                        th.appendChild(document.createTextNode(tblHeading[col]));
-                        tr.appendChild(th);
-                        }
-                        for (var f=0; f<timeStamp.length; f++)
-                        {
-                            var tr = document.createElement('TR'); 
-                            var time = document.createElement('TD');
-                            var boilTemp = document.createElement('TD');
-                            var ambTemp = document.createElement('TD');
-                            var humid = document.createElement('TD');
-                            time.appendChild(document.createTextNode(timeStampTbl[f]));
-                            boilTemp.appendChild(document.createTextNode(boilerTempTbl[f]));
-                            ambTemp.appendChild(document.createTextNode(ambientTempTbl[f])); 
-                            humid.appendChild(document.createTextNode(ambientHumidityTbl[f]));                     
-                            tr.appendChild(time);
-                            tr.appendChild(boilTemp);
-                            tr.appendChild(ambTemp);
-                            tr.appendChild(humid);
-                            tbody.appendChild(tr);
-                        }
+                       var tableDiv = document.getElementById("table"); 
+                var table = document.createElement('TABLE');
+                var tbody= document.createElement('TBODY');  
+                var tr = document.createElement('TR');
 
-                        tableDiv.appendChild(table);
+                table.appendChild(tbody);
+
+                //create header
+                tbody.appendChild(tr);
+
+                case normal_data:
+                var timeStampTbl = [], boilerTempTbl = [], ambientTempTbl = [],ambientHumidityTbl = [];
+                var tblHeading = ["TimeStamp","Boiler Temp","Ambient Temp","Humidity"];
+                $.getJSON(baseURL.concat("normal_data"), function(results){
+                    $.each(results, function(i, field){
+                        ambientTempTbl.push(field.ambientTemp);
+                        boilerTempTbl.push(field.boilerTemp);
+                        ambientHumidityTbl.push(field.ambientHumidity);
+                    });
+                });
+                for(var col=0; col<tblHeading.length; col++)
+                {
+                    var th = document.createElement('TH');
+                    th.width = '75';
+                    th.appendChild(document.createTextNode(tblHeading[col]));
+                    tr.appendChild(th);
+                }
+                for (var f=0; f<timeStampTbl.length; f++)
+                {
+                    var tr = document.createElement('TR'); 
+                    var time = document.createElement('TD');
+                    var boilTemp = document.createElement('TD');
+                    var ambTemp = document.createElement('TD');
+                    var humid = document.createElement('TD');
+                    time.appendChild(document.createTextNode(timeStampTbl[f]));
+                    boilTemp.appendChild(document.createTextNode(boilerTempTbl[f]));
+                    ambTemp.appendChild(document.createTextNode(ambientTempTbl[f])); 
+                    humid.appendChild(document.createTextNode(ambientHumidityTbl[f]));                     
+                    tr.appendChild(time);
+                    tr.appendChild(boilTemp);
+                    tr.appendChild(ambTemp);
+                    tr.appendChild(humid);
+                    tbody.appendChild(tr);
+                }
+
+                tableDiv.appendChild(table);
                 break;
                 case shot_data:
                 var timeStampTbl = [], boilerTempTbl = [], pressureTbl = [];
@@ -147,7 +159,6 @@
             }
         });*/
             }
-            setSelection();
         </script>
 
     </body>
