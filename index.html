@@ -54,69 +54,18 @@
                     <button type="button" class="btn btn-primary" id="off">Turn Off Machine</button>
                     <button type="button" class="btn btn-primary" id="brew">Pull Shot</button>  
                 </div>
-            <canvas id="brewTempChart"></canvas>
-          </div>  
+                    <canvas id="brewTempChart"></canvas>
+                </div>  
+                </div>
+                    <canvas id="tempChart"></canvas>
+                </div>  
             </div>
         </div>
         
         
      
      
-                <script>
-                    var ctx = document.getElementById("brewTempChart").getContext("2d");
-                    var baseURL = "http://pidataspro.ddns.net:8056/";
-                    ctx.fillStyle = "white"
-                    function drawRealTempChart() {
-                        setInterval(function() {
-                        $.getJSON(baseURL.concat("getNormal60"), function(results){
-                            var label1 = [], boilerTemp=[],roomTemp=[];
-                            
-                            $.each(results, function(i, field){
-                                var date = new Date(field.timeStamp);
-                                var n = date.toLocaleTimeString();
-                                label1.push(n);
-                                boilerTemp.push(field.boilerTemp);
-                            });
-                            var tempData = {
-                                labels: label1,
-                                xAxisID: "Time",
-                                yAxisID: "Temperature in F",
-                                datasets : [{
-                                    label: 'Boiler Temperature',
-                                    backgroundColor: "rgba(153,255,51,0.4)",
-                                    data: boilerTemp,
-                                    radius: 2,
-                                    fill: true
-                                    //showLine: false
-                                }]
-                            };
-                            var brewTempChart = new Chart(ctx, {
-                                type: 'line',
-                                data: tempData,
-                                options:{
-                                    animation:{
-                                        duration: 0
-                                    },
-                                    title: {
-                                        fontSize: 20,
-                                        display: true,
-                                        text: "Boiler Temperature"},
 
-                                    scales: {
-                                        yAxes: [{
-                                            ticks: {
-                                                stepSize: 20
-                                            }
-                                        }]
-
-                                    }
-                                }
-                            });
-                        });
-                            }, 1000);
-                    }
-                    drawRealTempChart();
-                </script> 
             
     
         
@@ -239,6 +188,128 @@
                     });
                 }, 1000);
             }
+            
+            
+                         
+                    var ctx = document.getElementById("brewTempChart").getContext("2d");
+                    var baseURL = "http://pidataspro.ddns.net:8056/";
+                    ctx.fillStyle = "white"
+                    function drawRealTempChart() {
+                        setInterval(function() {
+                        $.getJSON(baseURL.concat("getNormal60"), function(results){
+                            var label1 = [], boilerTemp=[],roomTemp=[];
+                            
+                            $.each(results, function(i, field){
+                                var date = new Date(field.timeStamp);
+                                var n = date.toLocaleTimeString();
+                                label1.push(n);
+                                boilerTemp.push(field.boilerTemp);
+                            });
+                            var tempData = {
+                                labels: label1,
+                                xAxisID: "Time",
+                                yAxisID: "Temperature in F",
+                                datasets : [{
+                                    label: 'Boiler Temperature',
+                                    backgroundColor: "rgba(153,255,51,0.4)",
+                                    data: boilerTemp,
+                                    radius: 2,
+                                    fill: true
+                                    //showLine: false
+                                }]
+                            };
+                            var brewTempChart = new Chart(ctx, {
+                                type: 'line',
+                                data: tempData,
+                                options:{
+                                    animation:{
+                                        duration: 0
+                                    },
+                                    title: {
+                                        fontSize: 20,
+                                        display: true,
+                                        text: "Boiler Temperature"},
+
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                stepSize: 20
+                                            }
+                                        }]
+
+                                    }
+                                }
+                            });
+                        });
+                            }, 1000);
+                    }
+                    drawRealTempChart();
+                
+            
+            
+            
+            
+            
+            var ctx = document.getElementById("tempChart").getContext("2d");
+                    var baseURL = "http://pidataspro.ddns.net:8056/";
+                    ctx.fillStyle = "white"
+                    function drawTempChart() {
+                        setInterval(function() {
+                        $.getJSON(baseURL.concat("getNormal60"), function(results){
+                            var label1 = [], boilerTemp=[],roomTemp=[];
+                            
+                            $.each(results, function(i, field){
+                                var date = new Date(field.timeStamp);
+                                var n = date.toLocaleTimeString();
+                                label1.push(n);
+                                boilerTemp.push(field.ambientTemp);
+                            });
+                            var tempData = {
+                                labels: label1,
+                                xAxisID: "Time",
+                                yAxisID: "Temperature in F",
+                                datasets : [{
+                                    label: 'Ambient Temperature',
+                                    backgroundColor: "rgba(153,255,51,0.4)",
+                                    data: boilerTemp,
+                                    radius: 2,
+                                    fill: true
+                                    //showLine: false
+                                }]
+                            };
+                            var brewTempChart = new Chart(ctx, {
+                                type: 'line',
+                                data: tempData,
+                                options:{
+                                    animation:{
+                                        duration: 0
+                                    },
+                                    title: {
+                                        fontSize: 20,
+                                        display: true,
+                                        text: "Ambient Temperature"},
+
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                stepSize: 20
+                                            }
+                                        }]
+
+                                    }
+                                }
+                            });
+                        });
+                            }, 1000);
+                    }
+                    drawTempChart();
+                
+            
+            
+            
+            
+            
+            
         </script>
         </body>
         <html/>
