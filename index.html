@@ -128,14 +128,17 @@
             function drawChart() {
                 setInterval(function() {
                     $.getJSON(("http://pidataspro.ddns.net:8056/getLastNormal"), function(results){
-                        var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
-                        var test = results.field.ambientTemp; ;
+                        //var ambientTemp = [], boilerTemp=[],ambientHumidity=[];
+                        var boilerTemp,ambientTemp,ambientHumidity;
                        // var all = [];
                         $.each(results, function(i, field){
-                            ambientTemp.push(field.ambientTemp);
-                            boilerTemp.push(field.boilerTemp);
-                            ambientHumidity.push(field.ambientHumidity);
+                           // ambientTemp.push(field.ambientTemp);
+                        //    boilerTemp.push(field.boilerTemp);
+                        //    ambientHumidity.push(field.ambientHumidity);
                             
+                            boilerTemp = field.boilerTemp
+                            ambientTemp = field.ambientTemp; 
+                            ambientHumidity = field.ambientHumidity
                             
                         });
                         //Returns all of the values
@@ -143,17 +146,17 @@
 
                         var dataBoilerTemp = google.visualization.arrayToDataTable([
                             ['Label', 'Value'],
-                            ['Boiler Temp', test]
+                            ['Boiler Temp', boilerTemp]
                         ]);
 
                         var dataAmbientTemp = google.visualization.arrayToDataTable([
                             ['Label', 'Value'],
-                            ['Room Temp', ambientTemp[0]]
+                            ['Room Temp', ambientTemp]
                         ]);
 
                         var dataHumidity = google.visualization.arrayToDataTable([
                             ['Label', 'Value'],
-                            ['Humidity', ambientHumidity[0]]
+                            ['Humidity', ambientHumidity
                         ]);
 
                         var boilerTempOptions = {
