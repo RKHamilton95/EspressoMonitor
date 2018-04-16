@@ -37,9 +37,7 @@
                 </div>
             </div>
         </nav>
-        <input id = "in" type="text"/>
-       
-        <button type="button" class="btn btn-primary" id="ref">Turn Off Machine</button>
+        
         <form id ="formTest">
             <p class="shotText container-fluid"><b>Enter a shot ID:</b></p>
             <input class="container-fluid" type="text" name="shotID">
@@ -49,6 +47,9 @@
         <!---Temp Chart--->
         
         <div class="container-fluid">
+            <input id = "in" type="text"/>
+            <button type="button" class="btn btn-primary" id="ref">Turn Off Machine</button>
+            
             <canvas id="tempChart"></canvas>
         </div>
         <div class="container-fluid">
@@ -60,7 +61,7 @@
         <script>
         
        $("#ref").click(function(e) {
-                    e.preventDefault();
+                   // e.preventDefault();
                drawAll(document.getElementById('in').value)
                 });
         
@@ -75,7 +76,7 @@
            // ctx3.fillStyle = "white"
 
             
-            drawAll(0);
+            //drawAll(0);
             function drawAll(id) {
                     $.getJSON(("http://pidataspro.ddns.net:8056/shot_data/" + id), function(results) {
                         var label = [],
