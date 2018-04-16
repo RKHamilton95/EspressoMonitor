@@ -38,7 +38,7 @@
             </div>
         </nav>
 
-        <form>
+        <form id ="formTest">
             <p class="shotText container-fluid"><b>Enter a shot ID:</b></p>
             <input class="container-fluid" type="text" name="shotID">
             <input class="container-fluid" type="submit" value="Submit">
@@ -57,7 +57,7 @@
         
         <script>
         
-        $('#form').submit(function(e) {
+        $('#formTest').submit(function(e) {
                     var fields = $(this).serializeArray();
                 console.log(fields);
                     drawAll(fields.shotID);
