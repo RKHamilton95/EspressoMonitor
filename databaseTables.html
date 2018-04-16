@@ -57,7 +57,7 @@
 
 
 function addTable(value)
-{
+{ table2.parentNode.removeChild(table2);
   var timestamp = [value, "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
   var value =[1,2,3,4,5,6,7];
 
@@ -69,24 +69,17 @@ function addTable(value)
   var tr = document.createElement('TR');
 
   table.appendChild(tbody);
-
   //create header
   tbody.appendChild(tr);
-
+    
   var heading = ["Timestamp", "Value"];
-
-    for (var col = 0; col<heading.length; col++)
-    {
+    for (var col = 0; col<heading.length; col++) {
       var th = document.createElement('TH');
       th.width = '75';
       th.appendChild(document.createTextNode(heading[col]));
       tr.appendChild(th);
     }
-
-
-
-  for (var f=0; f<timestamp.length; f++)
-  {
+  for (var f=0; f<timestamp.length; f++) {
    var tr = document.createElement('TR'); 
         var td1 = document.createElement('TD');
         var td2 = document.createElement('TD');
@@ -96,8 +89,7 @@ function addTable(value)
             tr.appendChild(td2);
             tbody.appendChild(tr);
    }
-
-   // tableDiv.appendChild(table);
+ tableDiv.appendChild(table);
 }
 </script>
         
